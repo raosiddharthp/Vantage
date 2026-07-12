@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vantage — Claims Intelligence &amp; Stakeholder Briefing System for Bishopsgate General Insurance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #fafaf8; --bg2: #f2f0eb; --bg3: #e8e5de;
+  --text: #1a1917; --text2: #5a5852; --text3: #8a8880;
+  --border: #d8d5ce; --border2: #c8c5be;
+  --amber: #b07010; --amber-bg: #fdf4e3; --amber-border: #e8c870;
+  --teal: #0a6b52; --teal-bg: #e8f5f0; --teal-border: #80c8b0;
+  --purple: #4a40b0; --purple-bg: #f0effe; --purple-border: #b0a8e8;
+  --coral: #b03820; --coral-bg: #fdf0ec; --coral-border: #e8a090;
+  --blue: #1850a0; --blue-bg: #eaf2fe; --blue-border: #90b8e8;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Inter', system-ui, sans-serif;
+  --r: 6px; --r-lg: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+.page-wrap { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--bg2); border-right: 1px solid var(--border); padding: 2rem 1.25rem; display: flex; flex-direction: column; gap: 0; }
+.sidebar-logo { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
+.sidebar-project { font-family: var(--serif); font-size: 18px; color: var(--text); margin-bottom: 0.25rem; line-height: 1.2; }
+.sidebar-sub { font-size: 11px; color: var(--text3); margin-bottom: 2rem; line-height: 1.4; }
+.sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+.sidebar-nav a { display: block; font-size: 12px; color: var(--text2); text-decoration: none; padding: 5px 8px; border-radius: var(--r); transition: background 0.15s, color 0.15s; }
+.sidebar-nav a:hover { background: var(--bg3); color: var(--text); }
+.sidebar-nav a.active { background: var(--text); color: var(--bg); }
+.sidebar-nav .sub { padding-left: 20px; font-size: 11px; color: var(--text3); }
+.sidebar-nav .sub:hover { color: var(--text2); }
+.sidebar-divider { height: 1px; background: var(--border); margin: 1rem 0; }
+.stack-block { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.stack-title { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.75rem; }
+.stack-item { font-size: 11px; color: var(--text2); padding: 4px 0; border-bottom: 1px solid var(--border); line-height: 1.3; }
+.stack-item strong { display: block; color: var(--text); font-weight: 500; font-size: 11px; }
+
+/* MAIN */
+.main { padding: 0; }
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(250,250,248,0.95); backdrop-filter: blur(8px); z-index: 100; }
+.topbar-breadcrumb { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.topbar-right { display: flex; align-items: center; gap: 16px; }
+.topbar-tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; background: var(--bg3); border-radius: 99px; color: var(--text2); }
+
+.content { padding: 3rem 2.5rem 5rem; max-width: 860px; }
+
+/* HEADER */
+.doc-header { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+.doc-eyebrow { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 10.5px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem; }
+.doc-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.doc-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; color: var(--text); margin-bottom: 0.75rem; }
+.doc-title em { font-style: italic; color: var(--teal); }
+.doc-byline { font-size: 13px; color: var(--text3); display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 2rem; }
+.doc-disclaimer { font-size: 12px; color: var(--text3); font-style: italic; border-left: 2px solid var(--border2); padding-left: 12px; margin-bottom: 2rem; line-height: 1.6; }
+
+/* STAT GRID */
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin: 0 0 2.5rem; }
+.stat-cell { padding: 1.25rem 1.5rem; border-right: 1px solid var(--border); background: white; }
+.stat-cell:last-child { border-right: none; }
+.stat-value { font-family: var(--serif); font-size: 30px; font-weight: 400; line-height: 1; margin-bottom: 4px; }
+.stat-value.amber { color: var(--amber); }
+.stat-value.teal { color: var(--teal); }
+.stat-value.purple { color: var(--purple); }
+.stat-value.coral { color: var(--coral); }
+.stat-label { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
+
+/* SECTIONS */
+.section { margin-bottom: 4.5rem; scroll-margin-top: 90px; }
+.section-heading { font-family: var(--serif); font-size: 27px; font-weight: 400; color: var(--text); margin-bottom: 1.25rem; display: flex; align-items: baseline; gap: 12px; }
+.section-num { font-family: var(--mono); font-size: 12px; color: var(--text3); }
+.section-kicker { font-style: italic; color: var(--text3); font-size: 14px; margin: -0.75rem 0 1.5rem; }
+.subsection-heading { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--text); margin: 2.25rem 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 8px; scroll-margin-top: 90px; }
+.subsection-heading::before { content: ''; display: block; width: 20px; height: 1px; background: var(--border2); }
+.body-text { font-size: 14.5px; line-height: 1.75; color: var(--text2); margin-bottom: 1rem; }
+.body-text strong { color: var(--text); font-weight: 500; }
+.body-text code { font-family: var(--mono); font-size: 12px; background: var(--bg3); padding: 1px 5px; border-radius: 3px; color: var(--text); }
+.body-text a { color: var(--teal); }
+
+/* CALLOUT */
+.callout { border-left: 2px solid var(--border2); padding: 1rem 1.25rem; margin: 1.5rem 0; background: var(--bg2); }
+.callout.amber { border-color: var(--amber-border); background: var(--amber-bg); }
+.callout.teal { border-color: var(--teal-border); background: var(--teal-bg); }
+.callout.purple { border-color: var(--purple-border); background: var(--purple-bg); }
+.callout.blue { border-color: var(--blue-border); background: var(--blue-bg); }
+.callout.coral { border-color: var(--coral-border); background: var(--coral-bg); }
+.callout-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 4px; }
+.callout.amber .callout-label { color: var(--amber); }
+.callout.teal .callout-label { color: var(--teal); }
+.callout.purple .callout-label { color: var(--purple); }
+.callout.blue .callout-label { color: var(--blue); }
+.callout.coral .callout-label { color: var(--coral); }
+.callout-body { font-size: 13.5px; line-height: 1.65; color: var(--text2); }
+.callout-body em { color: var(--text); font-style: italic; }
+
+/* FIGURE */
+.figure { margin: 2rem 0; }
+.figure-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+.figure-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.figure-sublabel { font-size: 12px; color: var(--text3); font-style: italic; margin-bottom: 0.75rem; }
+.figure-body { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; padding: 1.5rem; overflow-x: auto; }
+.figure-note { font-size: 12px; color: var(--text3); margin-top: 0.5rem; font-style: italic; }
+
+/* TABLES */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1.5rem 0; }
+.comp-table th { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; background: var(--bg2); }
+.comp-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: top; }
+.comp-table td:first-child { font-weight: 500; color: var(--text); }
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table .highlight td { background: var(--teal-bg); }
+.comp-table .dotted td { background: var(--amber-bg); }
+.badge { font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 99px; }
+.badge.amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.badge.teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+.badge.gray { background: var(--bg3); color: var(--text3); border: 1px solid var(--border); }
+.badge.red { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
+.badge.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+
+/* PERSONA / STAKEHOLDER CARDS */
+.card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+.p-card { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; padding: 1.25rem 1.4rem; scroll-margin-top: 90px; }
+.p-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; }
+.p-card-name { font-family: var(--serif); font-size: 17px; color: var(--text); }
+.p-card-tag { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 7px; border-radius: 99px; }
+.p-card-field { font-size: 12.5px; line-height: 1.6; margin-bottom: 6px; color: var(--text2); }
+.p-card-field strong { display: block; font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-bottom: 1px; }
+
+/* ADR CARDS */
+.adr-card { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; padding: 1.25rem 1.5rem; margin-bottom: 1rem; scroll-margin-top: 90px; }
+.adr-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 8px; }
+.adr-id { font-family: var(--mono); font-size: 11px; color: var(--teal); font-weight: 500; }
+.adr-title { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text); }
+.adr-row { font-size: 12.5px; line-height: 1.6; color: var(--text2); margin-bottom: 6px; }
+.adr-row strong { color: var(--text); font-weight: 500; }
+
+/* USER STORY CARDS */
+.us-card { border-left: 2px solid var(--teal-border); background: var(--teal-bg); border-radius: 0 var(--r) var(--r) 0; padding: 0.9rem 1.1rem; margin-bottom: 0.75rem; }
+.us-id { font-family: var(--mono); font-size: 10px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.us-story { font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 6px; font-style: italic; }
+.us-ac { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* PIPELINE / AGENTS STRIP */
+.pipeline-steps { display: flex; gap: 0; margin: 1.5rem 0; align-items: stretch; }
+.pipe-step { flex: 1; border: 1px solid var(--border); border-right: none; padding: 1rem 0.875rem; background: white; position: relative; }
+.pipe-step:last-child { border-right: 1px solid var(--border); border-radius: 0 var(--r) var(--r) 0; }
+.pipe-step:first-child { border-radius: var(--r) 0 0 var(--r); }
+.pipe-num { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 4px; }
+.pipe-name { font-family: var(--sans); font-size: 12.5px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.pipe-owner { font-size: 11px; color: var(--text3); }
+
+/* SIMULATOR */
+.sim-box { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; overflow: hidden; }
+.sim-scenarios { display: flex; gap: 8px; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--bg2); }
+.scenario-btn { font-family: var(--mono); font-size: 11px; padding: 6px 12px; border: 1px solid var(--border2); border-radius: 99px; background: white; color: var(--text2); cursor: pointer; transition: all 0.15s; }
+.scenario-btn:hover { border-color: var(--teal-border); color: var(--teal); }
+.scenario-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.sim-desc { padding: 1rem 1.25rem; font-size: 12.5px; color: var(--text2); line-height: 1.6; border-bottom: 1px solid var(--border); }
+.sim-stages { display: flex; padding: 1.25rem; gap: 0; border-bottom: 1px solid var(--border); }
+.sim-stage { flex: 1; text-align: center; position: relative; padding: 0 6px; }
+.stage-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border2); margin: 0 auto 8px; transition: all 0.2s; }
+.stage-dot.running { background: var(--amber); border-color: var(--amber); animation: pulse 0.8s infinite; }
+.stage-dot.done { background: var(--teal); border-color: var(--teal); }
+.stage-dot.blocked { background: var(--coral); border-color: var(--coral); }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+.stage-name { font-family: var(--sans); font-size: 11px; font-weight: 500; color: var(--text); }
+.stage-owner { font-size: 9.5px; color: var(--text3); margin-top: 1px; }
+.stage-bar { height: 2px; background: var(--border); margin-top: 8px; overflow: hidden; }
+.stage-bar-fill { height: 100%; width: 0; background: var(--teal); transition: width 0.4s; }
+.stage-timing { font-family: var(--mono); font-size: 9.5px; color: var(--text3); margin-top: 4px; }
+.stage-timing.done { color: var(--teal); }
+.sim-controls { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--border); }
+.run-btn { font-family: var(--mono); font-size: 12px; padding: 7px 18px; background: var(--text); color: var(--bg); border: none; border-radius: var(--r); cursor: pointer; }
+.run-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.sim-status { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.sim-status.running { color: var(--amber); }
+.sim-status.done { color: var(--teal); }
+.sim-output { font-family: var(--mono); font-size: 12px; line-height: 1.8; padding: 1.25rem; background: #16150f; color: #d8d5ce; max-height: 340px; overflow-y: auto; }
+.out-line { display: block; }
+.out-comment { color: #7a8570; }
+.out-warn { color: #d8a84a; }
+.out-key { color: #8ba8c8; }
+.out-val { color: #d8d5ce; }
+
+/* CAROUSEL (Stakeholder Deck) */
+.carousel { border: 1px solid var(--border); border-radius: var(--r-lg); background: white; overflow: hidden; }
+.carousel-nav { display: flex; gap: 4px; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--bg2); overflow-x: auto; }
+.slide-btn { font-family: var(--mono); font-size: 10.5px; padding: 5px 10px; border: 1px solid var(--border2); border-radius: 99px; background: white; color: var(--text3); cursor: pointer; white-space: nowrap; }
+.slide-btn.active { background: var(--purple); color: white; border-color: var(--purple); }
+.slide-panel { display: none; padding: 2.5rem; min-height: 320px; }
+.slide-panel.active { display: block; }
+.slide-headline { font-family: var(--serif); font-size: 22px; color: var(--text); margin-bottom: 0.5rem; line-height: 1.25; }
+.slide-sub { font-size: 13px; color: var(--text3); margin-bottom: 1.25rem; }
+.slide-note { font-size: 12.5px; color: var(--text2); background: var(--bg2); border-left: 2px solid var(--purple-border); padding: 0.75rem 1rem; margin-top: 1.25rem; font-style: italic; }
+
+/* COST CARD */
+.cost-summary { display: flex; gap: 1rem; align-items: flex-start; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--bg2); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.cost-summary-icon { color: var(--amber); flex-shrink: 0; margin-top: 2px; }
+.cost-summary-body { font-size: 13.5px; line-height: 1.7; color: var(--text2); }
+.sources-note { margin: 1.5rem 0; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: var(--r-lg); background: white; }
+.sources-note-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 0.5rem; }
+.sources-note-body { font-size: 11.5px; color: var(--text3); line-height: 1.7; }
+
+/* DIAGRAM SVG helpers */
+.dbox { fill: white; stroke: var(--border2); stroke-width: 1.5; }
+.dbox-agent { fill: var(--teal-bg); stroke: var(--teal-border); stroke-width: 1.5; }
+.dbox-ext { fill: var(--blue-bg); stroke: var(--blue-border); stroke-width: 1.5; }
+.dbox-reg { fill: var(--amber-bg); stroke: var(--amber-border); stroke-width: 1.5; }
+.dtext { font-family: 'Inter', sans-serif; fill: var(--text); }
+.dtext-sm { font-family: 'IBM Plex Mono', monospace; fill: var(--text3); }
+.darrow { stroke: var(--text3); stroke-width: 1.3; fill: none; marker-end: url(#arrow); }
+.darrow-dash { stroke: var(--coral); stroke-width: 1.3; fill: none; stroke-dasharray: 4 3; marker-end: url(#arrow); }
+
+footer.doc-footer { border-top: 1px solid var(--border); padding: 2.5rem; text-align: center; font-size: 12px; color: var(--text3); font-style: italic; }
+
+@media (max-width: 900px) {
+  .page-wrap { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<nav class="sidebar">
+  <div class="sidebar-logo">Bishopsgate General Insurance</div>
+  <div class="sidebar-project">Vantage</div>
+  <div class="sidebar-sub">Claims Intelligence &amp; Stakeholder Briefing System — living design document</div>
+  <ul class="sidebar-nav">
+    <li><a href="#s1">01 · Client Brief</a></li>
+    <li><a href="#s2">02 · Stakeholder Profiles</a></li>
+    <li><a href="#s2-anchor" class="sub">Anchor Claim</a></li>
+    <li><a href="#s3">03 · Problem Statement</a></li>
+    <li><a href="#s4">04 · As-Is Architecture</a></li>
+    <li><a href="#s5">05 · Cost of Cycle Time</a></li>
+    <li><a href="#s6">06 · User Stories</a></li>
+    <li><a href="#s7">07 · Proposed Design</a></li>
+    <li><a href="#s8">08 · Simulation</a></li>
+    <li><a href="#s9">09 · Success Metrics</a></li>
+    <li><a href="#s10">10 · ADRs</a></li>
+    <li><a href="#s11">11 · Objection Handling</a></li>
+    <li><a href="#s12">12 · Cost Analysis</a></li>
+    <li><a href="#s13">13 · Rollout Roadmap</a></li>
+    <li><a href="#s14">14 · Stakeholder Deck</a></li>
+  </ul>
+  <div class="stack-block">
+    <div class="stack-title">Register</div>
+    <div class="stack-item"><strong>1 Record, 5 Views</strong>Claims · Legal · Underwriting · Service · Renewals</div>
+    <div class="stack-item"><strong>5 ADRs</strong>rationale, rejected alternatives</div>
+    <div class="stack-item"><strong>8 Stakeholders</strong>one anchor claim thread</div>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-breadcrumb">bishopsgate-general / vantage / design-doc</div>
+    <div class="topbar-right"><span class="topbar-tag">fictional client — portfolio artefact</span></div>
+  </div>
+
+  <div class="content">
+
+  <header class="doc-header" id="top">
+    <div class="doc-eyebrow">Living design document</div>
+    <h1 class="doc-title">Vantage <em>— Claims Intelligence &amp;<br/>Stakeholder Briefing System</em></h1>
+    <div class="doc-byline">
+      <span>Client: Bishopsgate General Insurance</span>
+      <span>Sponsor: Helen Marsh, Chief Claims Officer</span>
+      <span>Track: Claims Cycle Time &amp; Retention</span>
+    </div>
+    <div class="doc-disclaimer">Bishopsgate General Insurance, Helen Marsh, and every named stakeholder and claim scenario in this document are fictional constructs built for this portfolio piece. Cited industry figures — FNOL cycle times, claims' share of premium cost, claimant churn intent following a poor claims experience, and digitisation cost-reduction ranges — describe real published industry research, referenced in §5 and §12. The company and people applying them do not exist.</div>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="stat-value amber">44</div><div class="stat-label">Days, average FNOL to final payment</div></div>
+      <div class="stat-cell"><div class="stat-value teal">38,000</div><div class="stat-label">Claims handled per year</div></div>
+      <div class="stat-cell"><div class="stat-value purple">5</div><div class="stat-label">Downstream functions, one blind to the others</div></div>
+      <div class="stat-cell"><div class="stat-value coral">1</div><div class="stat-label">Record, generated once, read five ways</div></div>
+    </div>
+  </header>
+
+  <!-- ============ SECTION 1 ============ -->
+  <section class="section" id="s1">
+    <h2 class="section-heading"><span class="section-num">01</span> Client Brief</h2>
+    <p class="section-kicker">Bishopsgate General Insurance — the anchor client.</p>
+
+    <p class="body-text">A composite of real UK mid-market commercial insurer patterns. Every requirement, constraint, and design decision in this document is grounded in the specific operational reality of a commercial lines insurer whose claims, underwriting, legal, customer service, and renewals functions run on five separate systems that were never built to talk to each other.</p>
+
+    <p class="body-text">Bishopsgate General Insurance has spent 58 years underwriting commercial property, casualty, and marine risk for SME and mid-corporate clients across the UK, on the promise of <em>"cover you can rely on when it matters."</em> That promise is evidenced well at the point of sale — pricing is sharp, underwriting is disciplined — and evidenced poorly at the point of claim, where the average file takes over six weeks to close and no function outside claims handling sees what happened until long after it stops being useful to them. Chief Claims Officer Helen Marsh has funded two prior claims-technology initiatives that improved reporting without changing the underlying cycle time, and is the executive sponsor for a third attempt that has to show a different kind of result.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin:1.5rem 0;">
+      <div class="figure-body">
+        <table class="comp-table">
+          <tr><td>Legal name</td><td>Bishopsgate General Insurance plc</td></tr>
+          <tr><td>Founded</td><td>1968, City of London</td></tr>
+          <tr><td>Headquarters</td><td>Bishopsgate, EC2</td></tr>
+          <tr><td>Lines of business</td><td>Commercial Property, Casualty &amp; Liability, Marine &amp; Cargo, Commercial Combined (SME)</td></tr>
+          <tr><td>Gross written premium</td><td>£680M</td></tr>
+          <tr><td>Active commercial policies</td><td>~85,000</td></tr>
+        </table>
+      </div>
+      <div class="figure-body">
+        <table class="comp-table">
+          <tr><td>Annual claims volume</td><td>~38,000</td></tr>
+          <tr><td>Claims system</td><td>Guidewire ClaimCenter</td></tr>
+          <tr><td>Policy / underwriting system</td><td>Duck Creek</td></tr>
+          <tr><td>Customer service platform</td><td>Salesforce Service Cloud</td></tr>
+          <tr><td>Legal case management</td><td>Standalone, unconnected to ClaimCenter</td></tr>
+          <tr><td>Renewals / distribution reporting</td><td>Standalone BI dashboard, monthly refresh</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">What the brief is, precisely</div>
+      <div class="callout-body">Not a claims-automation platform, and not a rebuild of ClaimCenter. Vantage is the layer that turns one FNOL submission into a single structured record that Claims, Legal, Underwriting, Customer Service, and Renewals can each read from the moment it exists — instead of each function independently, slowly, and partially reconstructing the same claim on its own timeline.</div>
+    </div>
+
+    <div class="figure">
+      <div class="figure-label">Fig. 1.1 — System Context</div>
+      <div class="figure-sublabel">C4 Level 1. Deliberately no Vantage component yet — establishing the world before proposing anything into it.</div>
+      <div class="figure-body">
+        <svg viewBox="0 0 820 340" width="100%">
+          <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--text3)"/></marker></defs>
+          <rect x="300" y="130" width="220" height="80" rx="8" class="dbox" stroke-width="2"/>
+          <text x="410" y="165" text-anchor="middle" class="dtext" font-size="14" font-weight="600">Bishopsgate General</text>
+          <text x="410" y="183" text-anchor="middle" class="dtext-sm" font-size="10">the organisation</text>
+
+          <rect x="30" y="30" width="150" height="55" rx="6" class="dbox"/>
+          <text x="105" y="53" text-anchor="middle" class="dtext" font-size="11">Policyholders</text>
+          <text x="105" y="68" text-anchor="middle" class="dtext-sm" font-size="9">85,000 policies</text>
+          <path d="M120,85 L340,130" class="darrow"/>
+
+          <rect x="30" y="255" width="150" height="55" rx="6" class="dbox"/>
+          <text x="105" y="278" text-anchor="middle" class="dtext" font-size="11">Brokers</text>
+          <text x="105" y="293" text-anchor="middle" class="dtext-sm" font-size="9">FNOL &amp; renewal channel</text>
+          <path d="M120,255 L340,210" class="darrow"/>
+
+          <rect x="640" y="30" width="150" height="55" rx="6" class="dbox"/>
+          <text x="715" y="53" text-anchor="middle" class="dtext" font-size="11">Claims Handlers</text>
+          <text x="715" y="68" text-anchor="middle" class="dtext-sm" font-size="9">Marsh's team</text>
+          <path d="M700,85 L480,130" class="darrow"/>
+
+          <rect x="600" y="255" width="190" height="55" rx="6" class="dbox-ext"/>
+          <text x="695" y="273" text-anchor="middle" class="dtext" font-size="11">ClaimCenter / Duck Creek</text>
+          <text x="695" y="288" text-anchor="middle" class="dtext-sm" font-size="9">4 unconnected systems</text>
+          <path d="M660,255 L480,210" class="darrow"/>
+
+          <rect x="330" y="255" width="150" height="55" rx="6" class="dbox-ext"/>
+          <text x="405" y="278" text-anchor="middle" class="dtext" font-size="11">Legal / CS / Renewals</text>
+          <text x="405" y="293" text-anchor="middle" class="dtext-sm" font-size="9">reading nothing live</text>
+          <path d="M405,255 L405,212" class="darrow"/>
+
+          <rect x="30" y="140" width="150" height="55" rx="6" class="dbox-reg"/>
+          <text x="105" y="163" text-anchor="middle" class="dtext" font-size="11">FCA</text>
+          <text x="105" y="178" text-anchor="middle" class="dtext-sm" font-size="9">ICOBS claims handling</text>
+          <path d="M180,167 L298,167" class="darrow" stroke-dasharray="3 3"/>
+
+          <rect x="640" y="140" width="150" height="55" rx="6" class="dbox-reg"/>
+          <text x="715" y="163" text-anchor="middle" class="dtext" font-size="11">Underwriting</text>
+          <text x="715" y="178" text-anchor="middle" class="dtext-sm" font-size="9">Chandra's team</text>
+          <path d="M638,167 L522,167" class="darrow" stroke-dasharray="3 3"/>
+        </svg>
+      </div>
+      <div class="figure-note">Note the absent connection between ClaimCenter/Duck Creek and Legal/CS/Renewals — that gap is the finding §4 makes explicit, not a rendering omission.</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 2 ============ -->
+  <section class="section" id="s2">
+    <h2 class="section-heading"><span class="section-num">02</span> Stakeholder Profiles</h2>
+    <p class="section-kicker">Eight people, five functions, one claim event that reaches each of them differently.</p>
+    <p class="body-text">The cycle-time problem in §3 doesn't land on Bishopsgate as an abstraction — it lands, at a different moment and with a different cost, on eight specific people across five functions. Template used throughout: <strong>Goal · Measured by · Resistance · Success looks like.</strong></p>
+
+    <div class="card-grid">
+      <div class="p-card" id="p-marsh"><div class="p-card-head"><span class="p-card-name">Helen Marsh</span><span class="p-card-tag" style="background:var(--purple-bg);color:var(--purple)">Chief Claims Officer, Sponsor</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Cut FNOL-to-settlement cycle time without adding headcount, and show the board why claims-driven churn is falling.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Average cycle time, combined ratio, retention rate on claims-affected accounts.</div>
+        <div class="p-card-field"><strong>Resistance</strong>Has funded two prior claims-tech projects that improved dashboards, not actual cycle time.</div>
+        <div class="p-card-field"><strong>Success</strong>One number for the board — cycle time down, retention up — traceable to specific claims.</div></div>
+
+      <div class="p-card" id="p-adeyemi"><div class="p-card-head"><span class="p-card-name">Tom Adeyemi</span><span class="p-card-tag" style="background:var(--teal-bg);color:var(--teal)">Claims Handler</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Spend the day adjusting claims, not re-typing facts out of PDFs into ClaimCenter.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Claims closed per month, file quality on audit.</div>
+        <div class="p-card-field"><strong>Resistance</strong>Two prior tools added a review step without removing any manual work.</div>
+        <div class="p-card-field"><strong>Success</strong>Opens a new FNOL to a briefing already drafted and evidenced, ready to check, not built from scratch.</div></div>
+
+      <div class="p-card" id="p-chandra"><div class="p-card-head"><span class="p-card-name">Priya Chandra</span><span class="p-card-tag" style="background:var(--blue-bg);color:var(--blue)">Underwriting Manager</span></div>
+        <div class="p-card-field"><strong>Goal</strong>See loss signals against her book as they happen, not the week a policy comes up for renewal.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Loss-ratio accuracy of renewal pricing, portfolio profitability.</div>
+        <div class="p-card-field"><strong>Resistance</strong>Already gets a claims data feed — wary of another dashboard restating what she half-sees already.</div>
+        <div class="p-card-field"><strong>Success</strong>A risk signal that reaches her the day severity is scored, not the day the file closes months later.</div></div>
+
+      <div class="p-card" id="p-okonkwo"><div class="p-card-head"><span class="p-card-name">David Okonkwo</span><span class="p-card-tag" style="background:var(--coral-bg);color:var(--coral)">Legal &amp; Subrogation Counsel</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Catch every recoverable claim before the subrogation window closes, not read about it after.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Subrogation recovery rate — £ recovered against £ theoretically recoverable.</div>
+        <div class="p-card-field"><strong>Resistance</strong>Will not accept a system that asserts a liability finding — recoveries are contested and legally exposed if wrong.</div>
+        <div class="p-card-field"><strong>Success</strong>An early flag with the evidence attached; the liability determination is still his to make.</div></div>
+
+      <div class="p-card" id="p-kim"><div class="p-card-head"><span class="p-card-name">Rachel Kim</span><span class="p-card-tag" style="background:var(--teal-bg);color:var(--teal)">Customer Service Lead</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Stop "where's my claim" calls from being the majority of the team's inbound volume.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Call volume, first-contact resolution, claims-related complaint rate.</div>
+        <div class="p-card-field"><strong>Resistance</strong>A wrong status update to a policyholder is worse than no update.</div>
+        <div class="p-card-field"><strong>Success</strong>A plain-language update goes out automatically; her team only picks up genuinely complex cases.</div></div>
+
+      <div class="p-card" id="p-whitfield"><div class="p-card-head"><span class="p-card-name">James Whitfield</span><span class="p-card-tag" style="background:var(--amber-bg);color:var(--amber)">Renewals &amp; Distribution Director</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Know which accounts are at churn risk from a bad claims experience before the renewal conversation.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Retention rate; renewal-loss reasons attributed to claims experience.</div>
+        <div class="p-card-field"><strong>Resistance</strong>Renewals has never had account-level visibility into claims handling quality — trust in a new signal takes time.</div>
+        <div class="p-card-field"><strong>Success</strong>A churn-risk flag on his desk weeks before renewal, with enough detail to act on.</div></div>
+
+      <div class="p-card" id="p-mehta"><div class="p-card-head"><span class="p-card-name">Sanjay Mehta</span><span class="p-card-tag" style="background:var(--blue-bg);color:var(--blue)">Head of Data &amp; Platform</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Give five teams a shared signal without owning a sixth system or a fragile integration.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Integration uptime, data quality, security posture.</div>
+        <div class="p-card-field"><strong>Resistance</strong>Burned before by point solutions that promised to "just read" and needed constant maintenance.</div>
+        <div class="p-card-field"><strong>Success</strong>Vantage reads from ClaimCenter and existing systems as they are; nothing is re-platformed to accommodate it.</div></div>
+
+      <div class="p-card" id="p-clarke" style="grid-column:span 2"><div class="p-card-head"><span class="p-card-name">Fiona Clarke</span><span class="p-card-tag" style="background:var(--purple-bg);color:var(--purple)">Chief Risk Officer</span></div>
+        <div class="p-card-field"><strong>Goal</strong>Independent assurance that a system touching claims, legal, and underwriting is proportionate, explainable, and never becomes the decision-maker.</div>
+        <div class="p-card-field"><strong>Measured by</strong>Internal audit findings; conduct-risk indicators under FCA ICOBS claims-handling standards.</div>
+        <div class="p-card-field"><strong>Resistance</strong>"Where's the human, and what happens when it's wrong" is the actual test she applies, not a formality.</div>
+        <div class="p-card-field"><strong>Success</strong>Every AI-drafted output is visibly a draft, every override is logged, and she can show a regulator exactly where a human decided.</div></div>
+    </div>
+
+    <h3 class="subsection-heading" id="s2-anchor">Anchor Claim Thread</h3>
+    <p class="body-text">One claim is followed through this document end to end, so the design can be checked against a concrete case rather than an abstraction.</p>
+    <div class="p-card" style="margin-bottom:1.5rem;">
+      <div class="p-card-head"><span class="p-card-name">Elder &amp; Vance Precision Engineering Ltd</span><span class="p-card-tag" style="background:var(--coral-bg);color:var(--coral)">Commercial Property · Leeds</span></div>
+      <div class="p-card-field"><strong>Incident</strong>A contractor working on adjacent premises causes an escape of water into the main production hall, damaging CNC machinery and finished stock.</div>
+      <div class="p-card-field"><strong>What it touches</strong>An adjuster brief (Adeyemi), a possible subrogation claim against the contractor (Okonkwo), a loss-severity signal against a mid-market manufacturing account (Chandra), a policyholder who has heard nothing in eleven days (Kim), and a renewal due in six weeks on an account the broker has quietly started shopping (Whitfield).</div>
+    </div>
+
+    <div class="figure">
+      <div class="figure-label">Fig. 2.1 — Stakeholder / Record Relationship Map</div>
+      <div class="figure-sublabel">One record, read five ways — governance and sponsorship sit above it, the claim event sits below it.</div>
+      <div class="figure-body">
+        <svg viewBox="0 0 820 260" width="100%">
+          <text x="20" y="20" class="dtext-sm" font-size="10">GOVERNANCE</text>
+          <rect x="20" y="28" width="120" height="40" rx="6" class="dbox-reg"/><text x="80" y="52" text-anchor="middle" class="dtext" font-size="10.5">Marsh</text>
+          <rect x="150" y="28" width="120" height="40" rx="6" class="dbox-reg"/><text x="210" y="52" text-anchor="middle" class="dtext" font-size="10.5">Clarke</text>
+          <text x="300" y="20" class="dtext-sm" font-size="10">RECORD CONSUMERS</text>
+          <rect x="300" y="28" width="105" height="40" rx="6" class="dbox-agent"/><text x="352" y="52" text-anchor="middle" class="dtext" font-size="10">Adeyemi</text>
+          <rect x="413" y="28" width="105" height="40" rx="6" class="dbox-agent"/><text x="465" y="52" text-anchor="middle" class="dtext" font-size="10">Okonkwo</text>
+          <rect x="526" y="28" width="105" height="40" rx="6" class="dbox-agent"/><text x="578" y="52" text-anchor="middle" class="dtext" font-size="10">Chandra</text>
+          <text x="670" y="20" class="dtext-sm" font-size="10">CUSTOMER-FACING</text>
+          <rect x="650" y="28" width="75" height="40" rx="6" class="dbox-ext"/><text x="687" y="52" text-anchor="middle" class="dtext" font-size="9.5">Kim</text>
+          <rect x="733" y="28" width="75" height="40" rx="6" class="dbox-ext"/><text x="770" y="52" text-anchor="middle" class="dtext" font-size="9">Whitfield</text>
+
+          <rect x="290" y="190" width="240" height="42" rx="6" class="dbox" style="fill:var(--teal-bg);stroke:var(--teal-border)"/><text x="410" y="216" text-anchor="middle" class="dtext" font-size="10.5">Elder &amp; Vance — escape of water claim</text>
+
+          <path d="M352,190 L352,70" class="darrow"/>
+          <path d="M465,190 L465,70" class="darrow"/>
+          <path d="M470,190 L578,70" class="darrow"/>
+          <path d="M420,190 L687,70" class="darrow"/>
+          <path d="M460,190 L770,70" class="darrow"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 3 ============ -->
+  <section class="section" id="s3">
+    <h2 class="section-heading"><span class="section-num">03</span> Problem Statement</h2>
+    <p class="section-kicker">Not a claims-handling failure. A single moment of information nobody else in the business gets to see.</p>
+    <p class="body-text">Bishopsgate's claims handling is not badly run — Adeyemi's team is diligent and the file quality on audit is good. The failure is structural: the average claim now takes 44 days from first notice of loss to final payment, the longest since industry tracking began, and every minute of that delay compounds because manual intake creates bottlenecks, fragmented systems don't share data cleanly, and different channels deliver inconsistent service. Claims is not a cost centre Bishopsgate can shrink by cutting corners — claims handling is an insurer's single largest cost component, historically running to around 70% of premium collected — so a small percentage improvement in cycle time is a large absolute number, not a rounding error.</p>
+
+    <div class="callout coral">
+      <div class="callout-label">Failure 1 — Evidence gets buried, not lost</div>
+      <div class="callout-body">Everything Adeyemi needs to write his briefing already exists in the FNOL submission — photos, the incident description, a contractor's correspondence. The extraction work, not the judgment, is what eats his day.</div>
+    </div>
+    <div class="callout amber">
+      <div class="callout-label">Failure 2 — Downstream functions find out too late</div>
+      <div class="callout-body">Okonkwo learns about a subrogation opportunity from the closed file, by which point evidence has degraded and the window has narrowed. Chandra sees loss severity in the renewal review, months after the loss occurred, not the week it was scored.</div>
+    </div>
+    <div class="callout purple">
+      <div class="callout-label">Failure 3 — The policyholder experience is silent</div>
+      <div class="callout-body">Nobody proactively updates Elder &amp; Vance, so every status question becomes an inbound call to Kim's team — and a slow, silent claim is consistently the largest single driver behind a subsequent decision not to renew.</div>
+    </div>
+
+    <p class="body-text">A fourth thread runs above all three: <strong>the same claim is rediscovered five times, independently, at five different moments.</strong> Marsh's board reporting is built on whichever of those five moments happened to be visible when the report was pulled.</p>
+
+    <div class="callout">
+      <div class="callout-label">Precise problem statement</div>
+      <div class="callout-body"><em>Bishopsgate has no mechanism that turns a single FNOL submission into a structured signal usable by every downstream function with a stake in it — so Claims, Legal, Underwriting, Customer Service, and Renewals each re-discover the same claim late, from a different angle, at a different time, at real cost to recovery, pricing accuracy, and retention.</em></div>
+    </div>
+
+    <div class="figure">
+      <div class="figure-label">Fig. 3.1 — The Latency Cascade</div>
+      <div class="figure-sublabel">One incident, five discovery points, staggered across weeks. Deliberately cut off before a fix is shown — that's §7.</div>
+      <div class="figure-body">
+        <svg viewBox="0 0 820 220" width="100%">
+          <line x1="60" y1="190" x2="780" y2="190" stroke="var(--border2)" stroke-width="1.5"/>
+          <text x="60" y="208" class="dtext-sm" font-size="9">day 0</text>
+          <text x="780" y="208" class="dtext-sm" font-size="9" text-anchor="end">day 90 (renewal)</text>
+
+          <circle cx="80" cy="190" r="5" fill="var(--teal)"/>
+          <rect x="35" y="120" width="120" height="50" rx="6" class="dbox" style="fill:var(--teal-bg);stroke:var(--teal-border)"/>
+          <text x="95" y="140" text-anchor="middle" class="dtext" font-size="9.5">Adeyemi</text>
+          <text x="95" y="155" text-anchor="middle" class="dtext-sm" font-size="8">manual extraction, day 0–2</text>
+          <path d="M95,170 L82,187" class="darrow"/>
+
+          <circle cx="260" cy="190" r="5" fill="var(--coral)"/>
+          <rect x="205" y="60" width="130" height="50" rx="6" class="dbox" style="fill:var(--coral-bg);stroke:var(--coral-border)"/>
+          <text x="270" y="80" text-anchor="middle" class="dtext" font-size="9.5">Okonkwo</text>
+          <text x="270" y="95" text-anchor="middle" class="dtext-sm" font-size="8">subrogation found ~day 45</text>
+          <path d="M270,110 L262,187" class="darrow-dash"/>
+
+          <circle cx="380" cy="190" r="5" fill="var(--teal)"/>
+          <rect x="325" y="120" width="130" height="50" rx="6" class="dbox" style="fill:var(--teal-bg);stroke:var(--teal-border)"/>
+          <text x="390" y="140" text-anchor="middle" class="dtext" font-size="9.5">Kim</text>
+          <text x="390" y="155" text-anchor="middle" class="dtext-sm" font-size="8">inbound call, day ~11</text>
+          <path d="M390,170 L382,187" class="darrow"/>
+
+          <circle cx="720" cy="190" r="5" fill="var(--amber)"/>
+          <rect x="650" y="60" width="140" height="50" rx="6" class="dbox" style="fill:var(--amber-bg);stroke:var(--amber-border)"/>
+          <text x="720" y="80" text-anchor="middle" class="dtext" font-size="9.5">Chandra</text>
+          <text x="720" y="95" text-anchor="middle" class="dtext-sm" font-size="8">loss signal, renewal review</text>
+          <path d="M720,110 L722,187" class="darrow-dash"/>
+
+          <circle cx="760" cy="190" r="5" fill="var(--purple)"/>
+          <rect x="690" y="140" width="140" height="50" rx="6" class="dbox" style="fill:var(--purple-bg);stroke:var(--purple-border)"/>
+          <text x="760" y="160" text-anchor="middle" class="dtext" font-size="9.5">Whitfield</text>
+          <text x="760" y="175" text-anchor="middle" class="dtext-sm" font-size="8">churn risk, at renewal</text>
+          <path d="M760,190 L760,192" class="darrow"/>
+        </svg>
+      </div>
+      <div class="figure-note">Dashed lines mark discovery points that arrive after the moment they would have been most useful — this is the gap §7's design closes.</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 4 ============ -->
+  <section class="section" id="s4">
+    <h2 class="section-heading"><span class="section-num">04</span> As-Is Architecture</h2>
+    <p class="section-kicker">Five systems, one of which sees the claim first — and stops there.</p>
+    <p class="body-text">The FNOL submission lands in ClaimCenter through whichever channel the policyholder or broker used, and it stays there. Underwriting, Legal, Customer Service, and Renewals each have their own systems, and none of them are wired to read anything out of ClaimCenter until a human manually pulls a report — typically at renewal, at claim closure, or when a complaint forces the question.</p>
+
+    <div class="figure">
+      <div class="figure-label">Fig. 4.1 — As-Is Data Flow</div>
+      <div class="figure-sublabel">Solid lines are live connections. Dashed lines are the absent ones — the finding, not an omission.</div>
+      <div class="figure-body">
+        <svg viewBox="0 0 820 300" width="100%">
+          <rect x="20" y="120" width="150" height="60" rx="6" class="dbox"/>
+          <text x="95" y="146" text-anchor="middle" class="dtext" font-size="10.5">FNOL intake</text>
+          <text x="95" y="162" text-anchor="middle" class="dtext-sm" font-size="8.5">phone · broker portal · email</text>
+
+          <rect x="230" y="120" width="150" height="60" rx="6" class="dbox-agent"/>
+          <text x="305" y="146" text-anchor="middle" class="dtext" font-size="10.5">ClaimCenter</text>
+          <text x="305" y="162" text-anchor="middle" class="dtext-sm" font-size="8.5">claims management</text>
+          <path d="M170,150 L228,150" class="darrow"/>
+
+          <rect x="440" y="20" width="150" height="55" rx="6" class="dbox-ext"/>
+          <text x="515" y="42" text-anchor="middle" class="dtext" font-size="10">Duck Creek</text>
+          <text x="515" y="57" text-anchor="middle" class="dtext-sm" font-size="8.5">underwriting</text>
+          <path d="M380,140 L440,55" class="darrow-dash"/>
+
+          <rect x="440" y="90" width="150" height="55" rx="6" class="dbox-ext"/>
+          <text x="515" y="112" text-anchor="middle" class="dtext" font-size="10">Legal case mgmt</text>
+          <text x="515" y="127" text-anchor="middle" class="dtext-sm" font-size="8.5">subrogation</text>
+          <path d="M380,148 L440,118" class="darrow-dash"/>
+
+          <rect x="440" y="160" width="150" height="55" rx="6" class="dbox-ext"/>
+          <text x="515" y="182" text-anchor="middle" class="dtext" font-size="10">Service Cloud</text>
+          <text x="515" y="197" text-anchor="middle" class="dtext-sm" font-size="8.5">customer service</text>
+          <path d="M380,152 L440,187" class="darrow-dash"/>
+
+          <rect x="440" y="230" width="150" height="55" rx="6" class="dbox-ext"/>
+          <text x="515" y="252" text-anchor="middle" class="dtext" font-size="10">Renewals BI</text>
+          <text x="515" y="267" text-anchor="middle" class="dtext-sm" font-size="8.5">monthly refresh</text>
+          <path d="M380,158 L440,257" class="darrow-dash"/>
+
+          <rect x="650" y="120" width="150" height="60" rx="6" class="dbox-reg"/>
+          <text x="725" y="146" text-anchor="middle" class="dtext" font-size="10">Human, manually</text>
+          <text x="725" y="162" text-anchor="middle" class="dtext-sm" font-size="8.5">pulls a report, weeks later</text>
+          <path d="M590,45 L648,130" class="darrow" stroke-dasharray="2 3"/>
+          <path d="M590,255 L648,168" class="darrow" stroke-dasharray="2 3"/>
+        </svg>
+      </div>
+      <div class="figure-note">Four dashed lines, one pattern: nothing downstream of ClaimCenter is live. Every connection today is a person, later, choosing to go and look.</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 5 ============ -->
+  <section class="section" id="s5">
+    <h2 class="section-heading"><span class="section-num">05</span> Cost of Cycle Time</h2>
+    <p class="section-kicker">Cycle time is not only a handling-cost metric. It is a retention lever.</p>
+    <p class="body-text">The claims-cost case is well understood on its own: claims requiring manual review can take days or weeks and cost up to $20 each to process, and claims associates spend up to 80% more time on manual data entry than an automated process would require, which is time diverted from the risk assessment and evaluation work that is their actual expertise. Digitisation has a well-established ceiling on what it recovers: McKinsey research finds digitised claims processes can reduce handling costs by up to 30%.</p>
+
+    <p class="body-text">The retention case is the one that changes who in the business should care. In an Accenture survey of digital insurer claims customers, 41% of claimants said they wanted to switch insurers, citing poor claims service as the reason. That figure sits directly upstream of Whitfield's renewal numbers, not just Marsh's claims budget.</p>
+
+    <div class="cost-summary">
+      <div class="cost-summary-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="cost-summary-body">
+        <strong>The compounded annual cost of the current cycle time is not speculative.</strong> Manual extraction across 38,000 claims a year, subrogation opportunities found too late to fully pursue, and renewal attrition on the subset of accounts with a genuinely poor claims experience together represent a quantifiable floor of <strong>£1.8–2.4M per year</strong> — before the harder-to-quantify cost of Marsh's own credibility the next time she asks the board to fund a claims initiative.
+      </div>
+    </div>
+
+    <div class="sources-note">
+      <div class="sources-note-label">Benchmark Sources &amp; Methodology</div>
+      <div class="sources-note-body">
+        Manual review cost and cycle time: industry claims-automation research on FNOL-to-payment duration and per-claim manual review cost.<br>
+        Claims cost share of premium: Deloitte, cited in Five Sigma FNOL research, claims as ~70% of premium collected (2020 baseline).<br>
+        Digitisation cost-reduction ceiling: McKinsey &amp; Company research on digitised claims handling cost.<br>
+        Churn intent following poor claims service: Accenture, "Why Claims Service Matters," digital insurer claims customer survey.<br>
+        Manual data-entry time overhead: V7 Labs, Automated Claims Processing Implementation Guide.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 6 ============ -->
+  <section class="section" id="s6">
+    <h2 class="section-heading"><span class="section-num">06</span> User Stories</h2>
+    <p class="section-kicker">Six stakeholders, six stories, one underlying record.</p>
+
+    <div class="us-card"><div class="us-id">US-01 · Claims Handler</div>
+      <div class="us-story">As a claims handler, I want the facts in a new FNOL submission already extracted and structured, so that I spend my time adjusting the claim rather than transcribing it.</div>
+      <div class="us-ac">Acceptance: every extracted field cites the source document and page; low-confidence fields are flagged, not silently filled in; the handler can accept, correct, or reject each field before it is treated as fact.</div></div>
+
+    <div class="us-card"><div class="us-id">US-02 · Legal &amp; Subrogation Counsel</div>
+      <div class="us-story">As subrogation counsel, I want to be notified the moment a claim shows third-party involvement, so that I can preserve evidence and assess recovery while the window is still open.</div>
+      <div class="us-ac">Acceptance: the flag states the evidence that triggered it and nothing more — no liability determination is asserted; counsel makes the pursue/decline call.</div></div>
+
+    <div class="us-card"><div class="us-id">US-03 · Underwriting Manager</div>
+      <div class="us-story">As an underwriting manager, I want a severity signal against my book as soon as a claim is scored, so that renewal pricing reflects current loss experience rather than a stale annual snapshot.</div>
+      <div class="us-ac">Acceptance: the signal rolls up to account and portfolio level; it is additive to Chandra's existing feed, not a second source of truth she has to reconcile.</div></div>
+
+    <div class="us-card"><div class="us-id">US-04 · Customer Service Lead</div>
+      <div class="us-story">As a customer service lead, I want a plain-language status update generated automatically at key claim milestones, so that policyholders don't have to call to find out where things stand.</div>
+      <div class="us-ac">Acceptance: updates are reviewed against a confidence threshold before sending; anything uncertain routes to a human rather than going out wrong.</div></div>
+
+    <div class="us-card"><div class="us-id">US-05 · Renewals &amp; Distribution Director</div>
+      <div class="us-story">As the renewals director, I want an account-level churn-risk flag ahead of the renewal date on accounts with a poor claims experience, so that I can re-engage before the broker moves the business.</div>
+      <div class="us-ac">Acceptance: the flag is delivered with enough claim-experience detail to act on, at least four weeks ahead of renewal date where the claim timeline allows it.</div></div>
+
+    <div class="us-card"><div class="us-id">US-06 · Chief Claims Officer</div>
+      <div class="us-story">As the executive sponsor, I want one dashboard tying cycle time, subrogation recovery, and claims-linked retention together, so that I can show the board a single, defensible outcome rather than five disconnected metrics.</div>
+      <div class="us-ac">Acceptance: every number on the dashboard is traceable back to the individual claims that produced it.</div></div>
+  </section>
+
+  <!-- ============ SECTION 7 ============ -->
+  <section class="section" id="s7">
+    <h2 class="section-heading"><span class="section-num">07</span> Proposed Design</h2>
+    <p class="section-kicker">One Claim Intelligence Record, generated once. Five role-based views read from it — nothing downstream is replaced.</p>
+
+    <p class="body-text">The design deliberately resists the instinct to build a separate agent per stakeholder. A single pipeline processes the FNOL submission once and produces one structured <strong>Claim Intelligence Record</strong>. Every downstream stakeholder view — Claims, Legal, Underwriting, Customer Service, Renewals — is a permissioned read of the same record, not a separate system with its own copy of the truth.</p>
+
+    <div class="pipeline-steps">
+      <div class="pipe-step"><div class="pipe-num">01</div><div class="pipe-name">Ingest</div><div class="pipe-owner">Document AI · FNOL forms, photos, reports</div></div>
+      <div class="pipe-step"><div class="pipe-num">02</div><div class="pipe-name">Structure</div><div class="pipe-owner">Gemini · extraction with source citation</div></div>
+      <div class="pipe-step"><div class="pipe-num">03</div><div class="pipe-name">Score</div><div class="pipe-owner">Severity, liability signal, subrogation flag</div></div>
+      <div class="pipe-step"><div class="pipe-num">04</div><div class="pipe-name">Route</div><div class="pipe-owner">Role-based views generated from one record</div></div>
+      <div class="pipe-step"><div class="pipe-num">05</div><div class="pipe-name">HITL</div><div class="pipe-owner">Handler / counsel decide, not the system</div></div>
+      <div class="pipe-step"><div class="pipe-num">06</div><div class="pipe-name">Dispatch</div><div class="pipe-owner">Existing systems notified, none replaced</div></div>
+    </div>
+
+    <h3 class="subsection-heading">Guardrail</h3>
+    <p class="body-text">Vantage drafts. It does not decide coverage, does not determine liability, and does not authorise payment. Every field in the Claim Intelligence Record is either extracted with a citation to its source document, or explicitly marked low-confidence and routed to a human before any downstream view is permitted to treat it as fact. This mirrors an existing regulatory boundary, not a design preference Bishopsgate could relax later — claims decisions are accountable acts under FCA ICOBS claims-handling rules, and Clarke's assurance role depends on that boundary being structural, not procedural.</p>
+
+    <h3 class="subsection-heading">Data access boundary</h3>
+    <p class="body-text">Each role reads only the fields its function is permitted to see. Okonkwo's Legal view surfaces liability evidence and subrogation flags; it does not surface Kim's customer-service sentiment notes. Whitfield's Renewals view surfaces an account-level churn-risk score; it does not surface the underlying claim file. The record is one object internally, but no view exposes more than its role needs — enforced at the query layer, not left to interface design.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr 1fr; gap:0.75rem; margin:1.5rem 0;">
+      <div class="figure-body" style="padding:1rem;"><div class="p-card-tag" style="background:var(--teal-bg);color:var(--teal);margin-bottom:6px;display:inline-block">Claims</div><div class="body-text" style="font-size:12px;margin:0;">Structured briefing, evidence, missing-info flags.</div></div>
+      <div class="figure-body" style="padding:1rem;"><div class="p-card-tag" style="background:var(--coral-bg);color:var(--coral);margin-bottom:6px;display:inline-block">Legal</div><div class="body-text" style="font-size:12px;margin:0;">Third-party involvement flag, evidence, not a liability finding.</div></div>
+      <div class="figure-body" style="padding:1rem;"><div class="p-card-tag" style="background:var(--blue-bg);color:var(--blue);margin-bottom:6px;display:inline-block">Underwriting</div><div class="body-text" style="font-size:12px;margin:0;">Account-level severity signal vs. pricing assumptions.</div></div>
+      <div class="figure-body" style="padding:1rem;"><div class="p-card-tag" style="background:var(--purple-bg);color:var(--purple);margin-bottom:6px;display:inline-block">Service</div><div class="body-text" style="font-size:12px;margin:0;">Plain-language status update, sentiment flag.</div></div>
+      <div class="figure-body" style="padding:1rem;"><div class="p-card-tag" style="background:var(--amber-bg);color:var(--amber);margin-bottom:6px;display:inline-block">Renewals</div><div class="body-text" style="font-size:12px;margin:0;">Account churn-risk score ahead of renewal date.</div></div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 8 ============ -->
+  <section class="section" id="s8">
+    <h2 class="section-heading"><span class="section-num">08</span> Simulation</h2>
+    <p class="section-kicker">One FNOL submission, run through the pipeline, watched stage by stage.</p>
+    <p class="body-text">Two runs: the Elder &amp; Vance claim, where the evidence is clear enough to route straight to a confident draft; and a second claim where liability evidence is ambiguous, and the record is correctly routed to a human before any downstream flag is dispatched — the same honesty check the grounding step in §7 is there to enforce.</p>
+
+    <div class="sim-box">
+      <div class="sim-scenarios">
+        <button class="scenario-btn active" onclick="selectScenario(0)">Elder &amp; Vance — escape of water</button>
+        <button class="scenario-btn" onclick="selectScenario(1)">Ambiguous liability — routed to review</button>
+      </div>
+      <div class="sim-desc" id="sim-desc">Commercial property claim, third-party contractor involvement, clear documentary evidence.</div>
+      <div class="sim-stages">
+        <div class="sim-stage"><div class="stage-dot" id="dot-0"></div><div class="stage-name">Ingest</div><div class="stage-owner">Document AI</div><div class="stage-bar"><div class="stage-bar-fill" id="bar-0"></div></div><div class="stage-timing" id="tim-0">—</div></div>
+        <div class="sim-stage"><div class="stage-dot" id="dot-1"></div><div class="stage-name">Structure</div><div class="stage-owner">Gemini</div><div class="stage-bar"><div class="stage-bar-fill" id="bar-1"></div></div><div class="stage-timing" id="tim-1">—</div></div>
+        <div class="sim-stage"><div class="stage-dot" id="dot-2"></div><div class="stage-name">Score</div><div class="stage-owner">severity / liability</div><div class="stage-bar"><div class="stage-bar-fill" id="bar-2"></div></div><div class="stage-timing" id="tim-2">—</div></div>
+        <div class="sim-stage"><div class="stage-dot" id="dot-3"></div><div class="stage-name">Route</div><div class="stage-owner">role-based views</div><div class="stage-bar"><div class="stage-bar-fill" id="bar-3"></div></div><div class="stage-timing" id="tim-3">—</div></div>
+        <div class="sim-stage"><div class="stage-dot" id="dot-4"></div><div class="stage-name">HITL</div><div class="stage-owner">human decides</div><div class="stage-bar"><div class="stage-bar-fill" id="bar-4"></div></div><div class="stage-timing" id="tim-4">—</div></div>
+        <div class="sim-stage"><div class="stage-dot" id="dot-5"></div><div class="stage-name">Dispatch</div><div class="stage-owner">existing systems</div><div class="stage-bar"><div class="stage-bar-fill" id="bar-5"></div></div><div class="stage-timing" id="tim-5">—</div></div>
+      </div>
+      <div class="sim-controls">
+        <button class="run-btn" id="run-btn" onclick="runSim()">Run simulation</button>
+        <span class="sim-status" id="sim-status-label">idle</span>
+      </div>
+      <div class="sim-output" id="sim-output"><span class="out-comment"># select a scenario and run simulation</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 9 ============ -->
+  <section class="section" id="s9">
+    <h2 class="section-heading"><span class="section-num">09</span> Success Metrics</h2>
+    <p class="section-kicker">Targets, not achievements — the honest state of a design document, not a case study.</p>
+    <div class="stat-grid">
+      <div class="stat-cell"><div class="stat-value teal">&lt;15</div><div class="stat-label">Target average days, FNOL to briefing-ready</div></div>
+      <div class="stat-cell"><div class="stat-value amber">+</div><div class="stat-label">Subrogation flags surfaced within the recovery window, not after</div></div>
+      <div class="stat-cell"><div class="stat-value purple">–</div><div class="stat-label">"Where's my claim" call volume to Kim's team</div></div>
+      <div class="stat-cell"><div class="stat-value coral">4wk</div><div class="stat-label">Minimum lead time on churn-risk flags before renewal</div></div>
+    </div>
+    <p class="body-text">Note what is deliberately absent: a target for fully-automated claim decisions. Cycle time is compressed by removing manual extraction and cross-functional latency, not by removing the human decision points in §7's guardrail.</p>
+  </section>
+
+  <!-- ============ SECTION 10 ============ -->
+  <section class="section" id="s10">
+    <h2 class="section-heading"><span class="section-num">10</span> Architecture Decision Records</h2>
+
+    <div class="adr-card">
+      <div class="adr-head"><span class="adr-id">ADR-VT-01</span><span class="adr-title">Single record with role-based views, not a per-stakeholder agent</span></div>
+      <div class="adr-row"><strong>Context:</strong> Five functions each want a tailored output from the same claim event.</div>
+      <div class="adr-row"><strong>Decision:</strong> One pipeline produces one Claim Intelligence Record; every stakeholder view is a permissioned read of that record.</div>
+      <div class="adr-row"><strong>Rejected:</strong> A separate agent per function, evaluated and rejected — it multiplies extraction cost five times over for data that is identical at the source, and creates five points where the same fact could drift out of sync.</div>
+      <div class="adr-row"><strong>Status:</strong> Accepted.</div>
+    </div>
+
+    <div class="adr-card">
+      <div class="adr-head"><span class="adr-id">ADR-VT-02</span><span class="adr-title">Human-in-the-loop retained for every coverage, liability, and payment decision</span></div>
+      <div class="adr-row"><strong>Context:</strong> Claims handling decisions are accountable acts under FCA ICOBS.</div>
+      <div class="adr-row"><strong>Decision:</strong> Vantage drafts and cites evidence; it never finalises a coverage decision, a liability finding, or a payment. The handler or counsel of record makes every determination.</div>
+      <div class="adr-row"><strong>Consequence:</strong> Cycle-time gains come from removing manual extraction and cross-functional latency, not from removing decision points — bounds the upside, and is the correct trade for a regulated claims-handling function.</div>
+      <div class="adr-row"><strong>Status:</strong> Accepted.</div>
+    </div>
+
+    <div class="adr-card">
+      <div class="adr-head"><span class="adr-id">ADR-VT-03</span><span class="adr-title">Confidence-threshold routing, not best-effort auto-population</span></div>
+      <div class="adr-row"><strong>Context:</strong> Extracted fields vary in reliability — a clean invoice line item and an ambiguous liability inference are not equally trustworthy.</div>
+      <div class="adr-row"><strong>Decision:</strong> Fields below a set confidence threshold are marked and routed to a human reviewer rather than populated into the record as fact.</div>
+      <div class="adr-row"><strong>Consequence:</strong> Some claims move through the pipeline more slowly than others — by design; a wrong subrogation flag or a wrong customer update is a worse outcome than a slower one.</div>
+      <div class="adr-row"><strong>Status:</strong> Accepted.</div>
+    </div>
+
+    <div class="adr-card">
+      <div class="adr-head"><span class="adr-id">ADR-VT-04</span><span class="adr-title">Read-pattern integration with existing systems, no re-platforming</span></div>
+      <div class="adr-row"><strong>Context:</strong> Mehta's team has been burned by prior tools that promised to "just read" and became a maintenance burden.</div>
+      <div class="adr-row"><strong>Decision:</strong> Vantage reads from ClaimCenter, Duck Creek, and existing downstream systems through their existing APIs; it dispatches notifications into existing workflows rather than requiring any of the five systems to change.</div>
+      <div class="adr-row"><strong>Rejected:</strong> A shared data warehouse consolidating all five systems — rejected as disproportionate for the problem and a multi-year programme in its own right, not this project's scope.</div>
+      <div class="adr-row"><strong>Status:</strong> Accepted.</div>
+    </div>
+
+    <div class="adr-card">
+      <div class="adr-head"><span class="adr-id">ADR-VT-05</span><span class="adr-title">Least-privilege view boundary per stakeholder role</span></div>
+      <div class="adr-row"><strong>Context:</strong> The record contains fields with different sensitivity — customer sentiment, legal evidence, financial severity.</div>
+      <div class="adr-row"><strong>Decision:</strong> Access to each field is enforced at the query layer by role, not by interface design alone — a Renewals view cannot retrieve raw claim-file contents even if the interface were modified.</div>
+      <div class="adr-row"><strong>Consequence:</strong> Clarke's assurance function can verify the access boundary from configuration, not by auditing every interface.</div>
+      <div class="adr-row"><strong>Status:</strong> Accepted.</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 11 ============ -->
+  <section class="section" id="s11">
+    <h2 class="section-heading"><span class="section-num">11</span> Objection Handling</h2>
+    <p class="section-kicker">Genuine trade-offs, addressed directly — not talking points to overcome.</p>
+
+    <div class="callout coral">
+      <div class="callout-label">Adeyemi — "is this a surveillance tool measuring me, dressed up as help?"</div>
+      <div class="callout-body">A real risk if the metrics attached to Vantage become individual handler scorecards. The design commitment is that Vantage's output is a draft the handler edits, not a benchmark the handler is measured against — that has to be an explicit management decision at rollout, not an assumption.</div>
+    </div>
+    <div class="callout amber">
+      <div class="callout-label">Okonkwo — "an AI-suggested subrogation flag is still legal exposure if it's wrong"</div>
+      <div class="callout-body">Correct, and why ADR-VT-02 exists. The flag states the evidence, not a conclusion — "third-party correspondence present, contractor named" rather than "contractor liable." Counsel's determination is the only thing Legal acts on.</div>
+    </div>
+    <div class="callout purple">
+      <div class="callout-label">Mehta — "another integration is another thing that breaks at 2am"</div>
+      <div class="callout-body">A legitimate operational cost. ADR-VT-04 keeps the integration surface to read access against existing APIs and notification dispatch into existing channels — smaller than a new system, but not zero, and on-call ownership needs to be assigned before rollout, not after the first incident.</div>
+    </div>
+    <div class="callout blue">
+      <div class="callout-label">Chandra — "I already have a claims feed; why is this not redundant"</div>
+      <div class="callout-body">A fair challenge. The distinction is latency, not data — her existing feed is accurate but arrives at renewal review; Vantage's severity signal arrives the week a claim is scored. If that latency gap doesn't matter for her pricing cycle, this view isn't worth building for her function.</div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 12 ============ -->
+  <section class="section" id="s12">
+    <h2 class="section-heading"><span class="section-num">12</span> Cost Analysis</h2>
+    <table class="comp-table">
+      <tr><th>Line</th><th>Current state</th><th>With Vantage</th><th>Basis</th></tr>
+      <tr><td>Manual extraction cost</td><td>Up to $20/claim on manually-reviewed files</td><td>Extraction time redirected to adjustment work</td><td>Industry claims-automation benchmarks</td></tr>
+      <tr><td>Cycle time</td><td>44-day average, FNOL to payment</td><td>Target &lt;15 days to briefing-ready</td><td>§9 targets, not yet measured in production</td></tr>
+      <tr><td>Subrogation recovery</td><td>Flagged late or missed on a portion of eligible claims</td><td>Flagged within the recovery window</td><td>Illustrative — actual recovery rate uplift requires a production baseline</td></tr>
+      <tr><td>Claims-linked churn</td><td>Contributes to a documented 41% switch-intent rate on poorly-served claimants</td><td>Reduced via proactive Renewals engagement</td><td>Accenture claims-service survey</td></tr>
+    </table>
+    <div class="cost-summary">
+      <div class="cost-summary-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div class="cost-summary-body">
+        Against the £1.8–2.4M annual cost floor in §5, a Phase 1 build scoped to a single line of business (§13) is the right proof point before Ledger-equivalent finance sign-off on a full five-view, four-line rollout — the honest cost case is built incrementally, on a measured Phase 1 baseline, not projected wholesale from industry benchmarks alone.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION 13 ============ -->
+  <section class="section" id="s13">
+    <h2 class="section-heading"><span class="section-num">13</span> Rollout Roadmap</h2>
+    <p class="section-kicker">Three phases. Each one working end to end before the next begins.</p>
+
+    <table class="comp-table">
+      <tr><td>Phase 1</td><td>Claims Handler view only, Commercial Property line. Document AI + Gemini pipeline, Claim Intelligence Record, handler briefing UI. Proves extraction accuracy and cycle-time impact on one line before any other view is built.</td></tr>
+      <tr><td>Phase 2</td><td>Add Legal and Underwriting views on the same line of business. Subrogation flag and severity signal — the two views with the clearest, most defensible £ case.</td></tr>
+      <tr><td>Phase 3</td><td>Add Customer Service and Renewals views; extend the pipeline to Casualty &amp; Liability and Marine &amp; Cargo lines.</td></tr>
+    </table>
+    <p class="body-text">Each phase is scoped to be independently defensible — if Phase 1 doesn't measurably reduce cycle time on Commercial Property, Phase 2 does not proceed on schedule. The roadmap is a sequence of proof points, not a committed multi-year programme sold on Phase 1's promise.</p>
+  </section>
+
+  <!-- ============ SECTION 14 ============ -->
+  <section class="section" id="s14">
+    <h2 class="section-heading"><span class="section-num">14</span> Stakeholder Deck</h2>
+    <p class="section-kicker">One slide per stakeholder — the value narrative each of them needs to hear, not a single generic pitch repeated six times.</p>
+
+    <div class="carousel">
+      <div class="carousel-nav">
+        <button class="slide-btn active" onclick="showSlide(0)">Marsh</button>
+        <button class="slide-btn" onclick="showSlide(1)">Adeyemi</button>
+        <button class="slide-btn" onclick="showSlide(2)">Okonkwo</button>
+        <button class="slide-btn" onclick="showSlide(3)">Chandra</button>
+        <button class="slide-btn" onclick="showSlide(4)">Kim</button>
+        <button class="slide-btn" onclick="showSlide(5)">Whitfield</button>
+      </div>
+      <div class="slide-panel active">
+        <div class="slide-headline">One board number, traceable to individual claims</div>
+        <div class="slide-sub">For Helen Marsh, Chief Claims Officer</div>
+        <p class="body-text">Two prior initiatives improved how cycle time is reported. This one is scoped to change the cycle time itself, on one line of business, before any wider claim is made to the board.</p>
+        <div class="slide-note">The Phase 1 proof point is the pitch — not the eventual five-view state.</div>
+      </div>
+      <div class="slide-panel">
+        <div class="slide-headline">The briefing is already drafted when you open the file</div>
+        <div class="slide-sub">For Tom Adeyemi, Claims Handler</div>
+        <p class="body-text">Every extracted fact cites its source document. You correct what's wrong and adjust the claim — the same job, minus the transcription.</p>
+        <div class="slide-note">Not a scorecard. A draft you edit, not a benchmark you're measured against.</div>
+      </div>
+      <div class="slide-panel">
+        <div class="slide-headline">An early flag, not an early conclusion</div>
+        <div class="slide-sub">For David Okonkwo, Legal &amp; Subrogation Counsel</div>
+        <p class="body-text">Third-party involvement flagged the week it's evidenced, not the week the file closes. The liability determination is still made by you, on the evidence attached.</p>
+        <div class="slide-note">The system states what it saw. It never states who's at fault.</div>
+      </div>
+      <div class="slide-panel">
+        <div class="slide-headline">A severity signal that arrives when it can still change pricing</div>
+        <div class="slide-sub">For Priya Chandra, Underwriting Manager</div>
+        <p class="body-text">Not a second data source to reconcile against your existing feed — the same information, arriving weeks earlier, against the same book.</p>
+        <div class="slide-note">If the latency gap doesn't matter to your pricing cycle, this view isn't worth building for you — and that's a fair answer.</div>
+      </div>
+      <div class="slide-panel">
+        <div class="slide-headline">The update goes out before the customer has to ask</div>
+        <div class="slide-sub">For Rachel Kim, Customer Service Lead</div>
+        <p class="body-text">A plain-language status update at each milestone, held back and routed to a human whenever confidence is uncertain — never sent wrong to save a call.</p>
+        <div class="slide-note">Your team's time moves toward the genuinely complex cases.</div>
+      </div>
+      <div class="slide-panel">
+        <div class="slide-headline">A churn-risk flag before the broker starts shopping the account</div>
+        <div class="slide-sub">For James Whitfield, Renewals &amp; Distribution Director</div>
+        <p class="body-text">Account-level detail, four weeks ahead of renewal at minimum — enough to have the re-engagement conversation while there's still time for it to matter.</p>
+        <div class="slide-note">Built on a signal your function has never had visibility into before — trust in it is earned over the first few cycles, not assumed.</div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <footer class="doc-footer">Vantage — a fictional design exercise for Bishopsgate General Insurance, built as a portfolio artefact.</footer>
+</div>
+</div>
+
+<script>
+const scenarios = [
+  { desc: 'Commercial property claim, third-party contractor involvement, clear documentary evidence.',
+    timings: [180, 620, 260, 200, 0, 160],
+    output: [
+      ['comment','# vantage · claim run · claim: elder_vance_ewol'],
+      ['comment','# stage: ingest \u2192 complete (4 documents, trace: c4f1)'],
+      ['comment','# stage: structure \u2192 gemini call, structured output'],
+      ['key','incident: ','val','"escape of water \u2014 adjacent premises contractor, 14 Feb"'],
+      ['key','confidence: ','val','0.91'],
+      ['key','evidence: ','val','"contractor correspondence, 3 photos, loss adjuster site note"'],
+      ['comment','# stage: score \u2192 severity: high \u00b7 third-party flag: present'],
+      ['comment','# stage: route \u2192 5 role-based views generated from 1 record'],
+      ['key','legal_flag: ','val','"third-party correspondence present, contractor named"'],
+      ['key','underwriting_signal: ','val','"severity above account pricing assumption"'],
+      ['comment','# stage: hitl \u2192 awaiting handler review \u2014 draft only'],
+      ['comment','# stage: dispatch \u2192 parallel notification'],
+      ['warn','#   views updated: adeyemi \u00b7 okonkwo \u00b7 chandra \u00b7 kim \u00b7 whitfield'],
+    ]},
+  { desc: 'Warehouse fire claim, cause of ignition disputed between two contractors — liability evidence conflicting.',
+    timings: [175, 640, 300, 0, 220, 0],
+    output: [
+      ['comment','# vantage · claim run · claim: ambiguous_liability_01'],
+      ['comment','# stage: ingest \u2192 complete (6 documents, trace: 7b2e)'],
+      ['comment','# stage: structure \u2192 gemini call, structured output'],
+      ['key','incident: ','val','"warehouse fire \u2014 ignition source disputed"'],
+      ['key','confidence: ','val','0.58'],
+      ['key','evidence: ','val','"two contractor accounts conflict on ignition sequence"'],
+      ['comment','# stage: score \u2192 confidence below threshold on liability field'],
+      ['warn','#   state: unresolved \u2192 routed-to-human-queue, not auto-flagged'],
+      ['comment','# stage: route \u2192 blocked for legal view until reviewed'],
+      ['comment','# stage: hitl \u2192 human reviewer opens full evidence set'],
+      ['warn','#   no subrogation flag dispatched \u2014 confidence gate held'],
+    ]},
+];
+let activeScenario = 0, running = false;
+function selectScenario(i){ if(running) return; activeScenario=i; document.querySelectorAll('.scenario-btn').forEach((b,j)=>b.classList.toggle('active',i===j)); document.getElementById('sim-desc').textContent=scenarios[i].desc; resetSim(); }
+function resetSim(){ for(let i=0;i<6;i++){ document.getElementById('dot-'+i).className='stage-dot'; document.getElementById('bar-'+i).style.width='0'; document.getElementById('tim-'+i).textContent='—'; document.getElementById('tim-'+i).className='stage-timing'; } document.getElementById('sim-output').innerHTML='<span class="out-comment"># select a scenario and run simulation</span>'; document.getElementById('sim-status-label').textContent='idle'; document.getElementById('sim-status-label').className='sim-status'; }
+function fmtTime(ms){ return ms<1000 ? ms+'ms' : (ms/1000).toFixed(1)+'s'; }
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+async function runSim(){
+  if(running) return; running=true; document.getElementById('run-btn').disabled=true;
+  const s = scenarios[activeScenario];
+  const statusEl = document.getElementById('sim-status-label');
+  statusEl.textContent='running'; statusEl.className='sim-status running';
+  document.getElementById('sim-output').innerHTML='';
+  for(let i=0;i<6;i++){
+    const blocked = (s.timings[i]||0)===0 && i>=3;
+    document.getElementById('dot-'+i).className='stage-dot running';
+    await sleep(s.timings[i]||300);
+    document.getElementById('bar-'+i).style.width= blocked ? '40%' : '100%'; await sleep(150);
+    document.getElementById('dot-'+i).className = blocked ? 'stage-dot blocked' : 'stage-dot done';
+    const timEl=document.getElementById('tim-'+i); timEl.textContent= blocked ? 'held' : fmtTime(s.timings[i]||300); timEl.className='stage-timing done';
+  }
+  const out=document.getElementById('sim-output'); out.innerHTML='';
+  for(const line of s.output){
+    await sleep(55);
+    const span=document.createElement('span'); span.className='out-line';
+    if(line[0]==='comment'){ span.innerHTML='<span class="out-comment">'+line[1]+'</span>'; }
+    else if(line[0]==='warn'){ span.innerHTML='<span class="out-warn">'+line[1]+'</span>'; }
+    else { let html=''; for(let k=0;k<line.length;k+=2){ if(k+1<line.length) html+='<span class="out-'+line[k]+'">'+line[k+1]+'</span>'; } span.innerHTML=html; }
+    out.appendChild(span); out.scrollTop=out.scrollHeight;
+  }
+  statusEl.textContent='complete'; statusEl.className='sim-status done'; running=false; document.getElementById('run-btn').disabled=false;
+}
+selectScenario(0);
+
+function showSlide(i){ document.querySelectorAll('.slide-btn').forEach((b,j)=>b.classList.toggle('active',i===j)); document.querySelectorAll('.slide-panel').forEach((p,j)=>p.classList.toggle('active',i===j)); }
+
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.sidebar-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  links.forEach(a => { const href = a.getAttribute('href').replace('#',''); a.classList.toggle('active', href === current); });
+}, { passive: true });
+</script>
+</body>
+</html>
