@@ -1,7 +1,10 @@
 """Vantage API: claim records, handler briefings and page images."""
 import re
+from pathlib import Path as FilePath
 
 from fastapi import FastAPI, HTTPException, Path, Response
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app import data
 from app.briefing import build_briefing
@@ -10,6 +13,7 @@ app = FastAPI(title="Vantage", version="0.1.0")
 
 CLAIM_ID = re.compile(r"^CLM-2026-\d{4}$")
 DOCS = ("fnol_form", "loss_report", "repair_estimate")
+STATIC = FilePath(__file__).parent / "static"
 
 
 def _value(record, name, key="value"):
@@ -62,3 +66,19 @@ def page_image(claim_id: str, doc: str, page: int = Path(ge=1, le=9)):
         raise HTTPException(status_code=404, detail="Page not found")
     return Response(content=png, media_type="image/png",
                     headers={"Cache-Control": "public, max-age=86400"})
+
+
+@app.get("/", include_in_schema=False)
+def home():
+    return FileResponse(STATIC / "launch.html")
+
+
+app.mount("/static", StaticFiles(directory=STATIC), name="static")
+
+
+@app.middleware("http")
+async def allow_design_doc_embed(request, call_next):
+    """Only the design doc site may frame the app."""
+    response = await call_next(request)
+    response.headers["Content-Security-Policy"] = "frame-ancestors 'self' https://raosiddharthp.github.io"
+    return response

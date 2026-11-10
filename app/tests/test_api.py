@@ -65,3 +65,12 @@ def test_page_image_is_served_as_png_with_caching():
 ])
 def test_bad_page_requests_are_rejected(path):
     assert client.get(path).status_code in (404, 422)
+
+
+def test_launch_page_and_assets_are_served():
+    home = client.get("/")
+    assert home.status_code == 200 and "text/html" in home.headers["content-type"]
+    assert "Vantage" in home.text
+    assert client.get("/static/app.js").status_code == 200
+    assert client.get("/static/app.css").status_code == 200
+    assert "raosiddharthp.github.io" in home.headers["content-security-policy"]

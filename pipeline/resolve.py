@@ -50,7 +50,7 @@ def resolve(readings, line_text):
             if r["field"] != field or r["value"] is None or not str(r["value"]).strip():
                 continue
             if is_placeholder(r["value"]):
-                stated_missing.append({"doc": r["doc"], "value": r["value"]})
+                stated_missing.append({"doc": r["doc"], "value": r["value"], "line_ids": r["line_ids"]})
                 continue
             cited = " ".join(line_text.get(r["doc"], {}).get(i, "") for i in r["line_ids"])
             rs.append({**r, "canon": canonical(field, r["value"]),

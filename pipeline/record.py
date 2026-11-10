@@ -53,7 +53,10 @@ def build_record(claim, payload, ocr):
                 {**c, "evidence": evidence_for(index, c["doc"], c["line_ids"])}
                 for c in f["conflicts"]
             ],
-            "stated_missing": f.get("stated_missing", []),
+            "stated_missing": [
+                {**m, "evidence": evidence_for(index, m["doc"], m.get("line_ids", []))}
+                for m in f.get("stated_missing", [])
+            ],
         }
         if status in FLAG_STATUSES:
             flags.append({"field": name, "type": status})
