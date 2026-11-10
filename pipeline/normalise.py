@@ -9,6 +9,12 @@ def norm_text(s):
     return re.sub(r"\s+", " ", s).strip().casefold()
 
 
+def norm_address(s):
+    """Lower-cased address with the UK postcode space restored (OCR drops it)."""
+    s = re.sub(r"\b([A-Za-z]{1,2}\d[A-Za-z\d]?)\s*(\d[A-Za-z]{2})\b", r"\1 \2", s)
+    return norm_text(s)
+
+
 def norm_date(s):
     s = s.strip()
     for fmt in DATE_FORMATS:
@@ -36,7 +42,7 @@ def norm_bool(s):
         return False
     if re.search(r"\b(no|not|nil|none|without)\b", v):
         return False
-    if re.search(r"\b(yes|expected|anticipated|claimed|involved|likely|true)\b", v):
+    if re.search(r"\b(yes|expect\w*|anticipat\w*|claim\w*|interrupt\w*|involved|likely|true)\b", v):
         return True
     return None
 
@@ -46,6 +52,7 @@ def norm_phone(s):
 
 
 NORMALISERS = {
+    "risk_address": norm_address,
     "date_of_loss": norm_date,
     "date_reported": norm_date,
     "building_damage_estimate": norm_money,

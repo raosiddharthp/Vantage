@@ -26,9 +26,19 @@ def _squash(s):
     return re.sub(r"[^0-9a-z]", "", s.casefold())
 
 
-def is_grounded(value, cited_text):
+BOOL_FIELDS = {"business_interruption", "third_party_involved"}
+
+
+def is_grounded(value, cited_text, field=None):
+    """The value appears in the cited lines, or (yes/no fields only) a cited
+    sentence means the same thing as the value."""
     v = _squash(value)
-    return bool(v) and v in _squash(cited_text)
+    if v and v in _squash(cited_text):
+        return True
+    if field in BOOL_FIELDS and len(cited_text.split()) >= 6:
+        said = canonical(field, cited_text)
+        return said is not None and said == canonical(field, value)
+    return False
 
 
 def resolve(readings, line_text):
@@ -44,7 +54,7 @@ def resolve(readings, line_text):
                 continue
             cited = " ".join(line_text.get(r["doc"], {}).get(i, "") for i in r["line_ids"])
             rs.append({**r, "canon": canonical(field, r["value"]),
-                       "grounded": is_grounded(r["value"], cited)})
+                       "grounded": is_grounded(r["value"], cited, field)})
         order = FIELD_AUTHORITY.get(field, AUTHORITY)
         rs.sort(key=lambda r: order.index(r["doc"]))
         if not rs:
