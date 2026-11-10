@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0025",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0025",
+    "policy_number": "BGI-CP-8728432",
+    "insured_name": "Ironbridge Textiles Ltd",
+    "risk_address": "Unit 4, Meadow Lane Business Park, Wakefield, WF13 4RX",
+    "occupancy_type": "Retail premises",
+    "date_of_loss": "2026-09-01",
+    "date_reported": "2026-09-07",
+    "cause_of_loss": "Theft / burglary",
+    "loss_description": "Forced entry was made through the rear storage bay shutter overnight. Stock and equipment were taken and the shutter and alarm panel were damaged. Discovered at 05:15; the police have been informed.",
+    "building_damage_estimate": 222250,
+    "contents_damage_estimate": 0,
+    "business_interruption": false,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Dana Barrow",
+    "reporter_phone": "07700 900411"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0025/CLM-2026-0025_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0025/CLM-2026-0025_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0025/CLM-2026-0025_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

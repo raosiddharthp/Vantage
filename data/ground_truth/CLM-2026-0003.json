@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0003",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0003",
+    "policy_number": "BGI-CP-2758190",
+    "insured_name": "Pennine Print Works Ltd",
+    "risk_address": "Unit 23, Millbrook Way, Bradford, BD17 5GG",
+    "occupancy_type": "Food production",
+    "date_of_loss": "2026-09-19",
+    "date_reported": "2026-09-24",
+    "cause_of_loss": "Malicious damage",
+    "loss_description": "Vandalism to the workshop floor: windows were broken and fixtures damaged. Discovered at 15:45.",
+    "building_damage_estimate": 166250,
+    "contents_damage_estimate": 33250,
+    "business_interruption": false,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Marcus Mehta",
+    "reporter_phone": "07700 900730"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0003/CLM-2026-0003_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0003/CLM-2026-0003_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0003/CLM-2026-0003_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

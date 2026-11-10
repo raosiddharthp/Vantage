@@ -1,0 +1,66 @@
+{
+  "claim_id": "CLM-2026-0004",
+  "tier": "problem",
+  "problem_type": "missing_date",
+  "fields": {
+    "claim_ref": "CLM-2026-0004",
+    "policy_number": "BGI-CP-8097520",
+    "insured_name": "Fairlight Bakeries Limited",
+    "risk_address": "Unit 24, Millbrook Way, Leicester, LE10 8XN",
+    "occupancy_type": "Workshop",
+    "date_of_loss": null,
+    "date_reported": "2026-03-14",
+    "cause_of_loss": "Malicious damage",
+    "loss_description": "Vandalism to the first-floor office: windows were broken and fixtures damaged. Discovered at 00:15.",
+    "building_damage_estimate": 205750,
+    "contents_damage_estimate": 89500,
+    "business_interruption": false,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Callum Clarke",
+    "reporter_phone": "07700 900950"
+  },
+  "expected_flags": {
+    "missing": [
+      "date_of_loss"
+    ],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0004/CLM-2026-0004_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0004/CLM-2026-0004_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0004/CLM-2026-0004_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

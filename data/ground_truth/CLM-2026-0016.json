@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0016",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0016",
+    "policy_number": "BGI-CP-7938052",
+    "insured_name": "Marlow Storage Limited",
+    "risk_address": "Unit 9, Station Yard, Nottingham, NG11 2HL",
+    "occupancy_type": "Office building",
+    "date_of_loss": "2026-01-25",
+    "date_reported": "2026-01-28",
+    "cause_of_loss": "Theft / burglary",
+    "loss_description": "Forced entry was made through the retail floor shutter overnight. Stock and equipment were taken and the shutter and alarm panel were damaged. Discovered at 09:30; the police have been informed.",
+    "building_damage_estimate": 55750,
+    "contents_damage_estimate": 0,
+    "business_interruption": false,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Owen Clarke",
+    "reporter_phone": "07700 900795"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0016/CLM-2026-0016_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0016/CLM-2026-0016_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0016/CLM-2026-0016_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}
