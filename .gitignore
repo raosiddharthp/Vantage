@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets: never commit
+.env
+*.pem
+*-key.json
+service-account*.json
+credentials*.json
+
+# OS and editor
+.DS_Store
+.idea/
+.vscode/
