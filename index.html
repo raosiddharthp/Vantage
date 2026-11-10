@@ -225,6 +225,26 @@ footer.doc-footer { border-top: 1px solid var(--border); padding: 2.5rem; text-a
   .card-grid { grid-template-columns: 1fr; }
   .stat-grid { grid-template-columns: repeat(2,1fr); }
 }
+
+/* LAUNCH */
+.topbar-right { flex-direction: column; align-items: flex-end; gap: 6px; }
+.launch-btn { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 99px; border: 1px solid var(--text); background: var(--text); color: var(--bg); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+.launch-btn:hover { background: var(--teal); border-color: var(--teal); }
+.launch-btn:focus-visible, .launch-close:focus-visible, .launch-link:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.launch { position: fixed; inset: 0; z-index: 1000; background: var(--bg); display: flex; flex-direction: column; }
+.launch[hidden] { display: none; }
+.launch-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0.6rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--bg2); }
+.launch-title { font-family: var(--mono); font-size: 11px; color: var(--text2); }
+.launch-actions { display: flex; align-items: center; gap: 16px; }
+.launch-link { font-family: var(--mono); font-size: 11px; color: var(--text2); text-decoration: underline; }
+.launch-link[hidden] { display: none; }
+.launch-close { font-family: var(--mono); font-size: 11px; padding: 5px 12px; border-radius: 99px; border: 1px solid var(--border2); background: var(--bg); color: var(--text); cursor: pointer; }
+.launch-close:hover { background: var(--bg3); }
+.launch-frame { flex: 1; width: 100%; border: 0; background: #fff; }
+.launch-frame[hidden] { display: none; }
+.launch-note { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; text-align: center; color: var(--text2); font-size: 14px; }
+.launch-note[hidden] { display: none; }
+body.launch-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -262,7 +282,7 @@ footer.doc-footer { border-top: 1px solid var(--border); padding: 2.5rem; text-a
 <div class="main">
   <div class="topbar">
     <div class="topbar-breadcrumb">bishopsgate-general / vantage / design-doc</div>
-    <div class="topbar-right"><span class="topbar-tag">fictional client — portfolio artefact</span></div>
+    <div class="topbar-right"><span class="topbar-tag">fictional client — portfolio artefact</span><button type="button" class="launch-btn" id="launch-open">Launch</button></div>
   </div>
 
   <div class="content">
@@ -957,6 +977,55 @@ window.addEventListener('scroll', () => {
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
   links.forEach(a => { const href = a.getAttribute('href').replace('#',''); a.classList.toggle('active', href === current); });
 }, { passive: true });
+</script>
+
+<div class="launch" id="launch" role="dialog" aria-modal="true" aria-labelledby="launch-title" hidden>
+  <div class="launch-bar">
+    <div class="launch-title" id="launch-title">Vantage live demo — claims handler screen</div>
+    <div class="launch-actions">
+      <a class="launch-link" id="launch-link" href="#" target="_blank" rel="noopener" hidden>Open in new tab</a>
+      <button type="button" class="launch-close" id="launch-close">Close</button>
+    </div>
+  </div>
+  <iframe class="launch-frame" id="launch-frame" title="Vantage claims handler screen" referrerpolicy="no-referrer" hidden></iframe>
+  <div class="launch-note" id="launch-note" hidden>The live demo opens here once it is deployed.</div>
+</div>
+<script>
+(function () {
+  // Set this to the deployed app address once it is live, for example "https://vantage-app-abc123-nw.a.run.app/".
+  // While it is empty, the Launch button shows a "not deployed yet" message instead of a broken page.
+  var APP_URL = "";
+
+  var overlay = document.getElementById('launch');
+  var frame = document.getElementById('launch-frame');
+  var note = document.getElementById('launch-note');
+  var link = document.getElementById('launch-link');
+  var openBtn = document.getElementById('launch-open');
+  var closeBtn = document.getElementById('launch-close');
+  var loaded = false;
+
+  function open() {
+    overlay.hidden = false;
+    document.body.classList.add('launch-open');
+    if (APP_URL) {
+      // The app loads only on the first open, so people reading the doc do not trigger it.
+      if (!loaded) { frame.src = APP_URL; loaded = true; }
+      frame.hidden = false; note.hidden = true;
+      link.href = APP_URL; link.hidden = false;
+    } else {
+      frame.hidden = true; note.hidden = false; link.hidden = true;
+    }
+    closeBtn.focus();
+  }
+  function close() {
+    overlay.hidden = true;
+    document.body.classList.remove('launch-open');
+    openBtn.focus();
+  }
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.hidden) close(); });
+})();
 </script>
 </body>
 </html>
