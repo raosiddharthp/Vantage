@@ -82,3 +82,34 @@ async def allow_design_doc_embed(request, call_next):
     response = await call_next(request)
     response.headers["Content-Security-Policy"] = "frame-ancestors 'self' https://raosiddharthp.github.io"
     return response
+
+
+# Per-visitor limit on API calls. One instance serves the demo, so a simple in-memory count is enough.
+import time
+from collections import defaultdict, deque
+
+from fastapi.responses import JSONResponse
+
+RATE_LIMIT = 240      # requests
+RATE_WINDOW = 60.0    # seconds
+_hits = defaultdict(deque)
+
+
+@app.middleware("http")
+async def rate_limit(request, call_next):
+    if request.url.path.startswith("/api/"):
+        # Cloud Run appends the caller's address last in X-Forwarded-For.
+        forwarded = request.headers.get("x-forwarded-for", "")
+        who = forwarded.split(",")[-1].strip() or (request.client.host if request.client else "unknown")
+        now = time.monotonic()
+        window = _hits[who]
+        while window and now - window[0] > RATE_WINDOW:
+            window.popleft()
+        if len(window) >= RATE_LIMIT:
+            return JSONResponse({"detail": "Too many requests. Wait a minute and try again."},
+                                status_code=429, headers={"Retry-After": "60"})
+        window.append(now)
+        if len(_hits) > 5000:
+            for key in [k for k, v in _hits.items() if not v]:
+                del _hits[key]
+    return await call_next(request)

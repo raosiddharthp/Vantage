@@ -74,3 +74,17 @@ def test_launch_page_and_assets_are_served():
     assert client.get("/static/app.js").status_code == 200
     assert client.get("/static/app.css").status_code == 200
     assert "raosiddharthp.github.io" in home.headers["content-security-policy"]
+
+
+def test_rate_limit_returns_429_after_the_limit(monkeypatch):
+    from app import main
+    main._hits.clear()
+    monkeypatch.setattr(main, "RATE_LIMIT", 3)
+    headers = {"x-forwarded-for": "203.0.113.9"}
+    codes = [client.get("/healthz", headers=headers).status_code for _ in range(2)]
+    codes += [client.get("/api/config", headers=headers).status_code for _ in range(4)]
+    assert codes[:2] == [200, 200]          # non-API paths are not counted
+    assert codes[2:5] == [200, 200, 200] and codes[5] == 429
+    other = client.get("/api/config", headers={"x-forwarded-for": "198.51.100.4"})
+    assert other.status_code == 200          # a different visitor is unaffected
+    main._hits.clear()
