@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0022",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0022",
+    "policy_number": "BGI-CP-5754529",
+    "insured_name": "Alder Electrical Supplies Limited",
+    "risk_address": "Unit 18, Millbrook Way, Sheffield, S1 7LB",
+    "occupancy_type": "Workshop",
+    "date_of_loss": "2026-04-23",
+    "date_reported": "2026-04-25",
+    "cause_of_loss": "Impact by vehicle",
+    "loss_description": "A vehicle reversed into the rear storage bay wall at approximately 09:30, damaging the wall, door frame and internal racking. The driver, employed by Penrose Roofing Ltd, left contact details.",
+    "building_damage_estimate": 117250,
+    "contents_damage_estimate": 69750,
+    "business_interruption": false,
+    "third_party_involved": true,
+    "third_party_name": "Penrose Roofing Ltd",
+    "reporter_name": "Nadia Pearce",
+    "reporter_phone": "07700 900691"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0022/CLM-2026-0022_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0022/CLM-2026-0022_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0022/CLM-2026-0022_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

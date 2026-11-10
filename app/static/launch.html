@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<link rel="icon" href="data:,">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vantage: claim briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <a class="skip" href="#claim">Skip to the briefing</a>
+  <div class="app">
+    <header class="bar">
+      <div class="brand">
+        <strong>Vantage</strong>
+        <span class="where">Commercial Property claims at Bishopsgate General Insurance</span>
+      </div>
+      <p class="demo">Saved results from 30 synthetic claims. No real customer data.</p>
+    </header>
+
+    <nav class="queue" aria-label="Claims">
+      <div class="queue-head">
+        <h2>Claims</h2>
+        <div class="seg" role="group" aria-label="Filter claims">
+          <button type="button" data-filter="all" aria-pressed="true">All <span id="count-all"></span></button>
+          <button type="button" data-filter="review" aria-pressed="false">Needs review <span id="count-review"></span></button>
+        </div>
+      </div>
+      <ul class="qlist" id="queue"></ul>
+    </nav>
+
+    <main class="column" id="claim" tabindex="-1" aria-live="polite"></main>
+
+    <section class="viewer" aria-label="Source documents">
+      <div class="tabs" id="tabs" role="group" aria-label="Documents"></div>
+      <div class="sheet" id="sheet"></div>
+      <p class="caption" id="caption"></p>
+    </section>
+  </div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

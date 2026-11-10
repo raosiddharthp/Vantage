@@ -1,0 +1,662 @@
+[
+  {
+    "claim_id": "CLM-2026-0001",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0001/CLM-2026-0001_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0001/CLM-2026-0001_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0001/CLM-2026-0001_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0002",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0002/CLM-2026-0002_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0002/CLM-2026-0002_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0002/CLM-2026-0002_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0003",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0003/CLM-2026-0003_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0003/CLM-2026-0003_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0003/CLM-2026-0003_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0004",
+    "tier": "problem",
+    "problem_type": "missing_date",
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0004/CLM-2026-0004_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0004/CLM-2026-0004_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0004/CLM-2026-0004_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0005",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0005/CLM-2026-0005_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0005/CLM-2026-0005_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0005/CLM-2026-0005_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0006",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0006/CLM-2026-0006_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0006/CLM-2026-0006_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0006/CLM-2026-0006_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0007",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0007/CLM-2026-0007_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0007/CLM-2026-0007_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0007/CLM-2026-0007_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0008",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0008/CLM-2026-0008_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0008/CLM-2026-0008_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0008/CLM-2026-0008_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0009",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0009/CLM-2026-0009_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0009/CLM-2026-0009_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0009/CLM-2026-0009_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0010",
+    "tier": "problem",
+    "problem_type": "missing_ids",
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0010/CLM-2026-0010_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0010/CLM-2026-0010_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0010/CLM-2026-0010_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0011",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0011/CLM-2026-0011_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0011/CLM-2026-0011_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0011/CLM-2026-0011_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0012",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0012/CLM-2026-0012_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0012/CLM-2026-0012_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0012/CLM-2026-0012_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0013",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0013/CLM-2026-0013_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0013/CLM-2026-0013_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0013/CLM-2026-0013_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0014",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0014/CLM-2026-0014_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0014/CLM-2026-0014_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0014/CLM-2026-0014_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0015",
+    "tier": "problem",
+    "problem_type": "conflict",
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0015/CLM-2026-0015_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0015/CLM-2026-0015_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0015/CLM-2026-0015_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0016",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0016/CLM-2026-0016_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0016/CLM-2026-0016_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0016/CLM-2026-0016_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0017",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0017/CLM-2026-0017_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0017/CLM-2026-0017_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0017/CLM-2026-0017_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0018",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0018/CLM-2026-0018_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0018/CLM-2026-0018_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0018/CLM-2026-0018_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0019",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0019/CLM-2026-0019_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0019/CLM-2026-0019_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0019/CLM-2026-0019_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0020",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0020/CLM-2026-0020_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0020/CLM-2026-0020_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0020/CLM-2026-0020_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0021",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0021/CLM-2026-0021_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0021/CLM-2026-0021_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0021/CLM-2026-0021_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0022",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0022/CLM-2026-0022_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0022/CLM-2026-0022_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0022/CLM-2026-0022_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0023",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0023/CLM-2026-0023_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0023/CLM-2026-0023_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0023/CLM-2026-0023_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0024",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0024/CLM-2026-0024_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0024/CLM-2026-0024_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0024/CLM-2026-0024_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0025",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0025/CLM-2026-0025_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0025/CLM-2026-0025_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0025/CLM-2026-0025_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0026",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0026/CLM-2026-0026_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0026/CLM-2026-0026_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0026/CLM-2026-0026_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0027",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0027/CLM-2026-0027_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0027/CLM-2026-0027_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0027/CLM-2026-0027_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0028",
+    "tier": "scanned",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0028/CLM-2026-0028_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0028/CLM-2026-0028_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0028/CLM-2026-0028_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0029",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0029/CLM-2026-0029_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0029/CLM-2026-0029_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0029/CLM-2026-0029_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  },
+  {
+    "claim_id": "CLM-2026-0030",
+    "tier": "clean",
+    "problem_type": null,
+    "documents": [
+      {
+        "type": "fnol_form",
+        "file": "CLM-2026-0030/CLM-2026-0030_fnol_form.pdf",
+        "pages": 1
+      },
+      {
+        "type": "loss_report",
+        "file": "CLM-2026-0030/CLM-2026-0030_loss_report.pdf",
+        "pages": 1
+      },
+      {
+        "type": "repair_estimate",
+        "file": "CLM-2026-0030/CLM-2026-0030_repair_estimate.pdf",
+        "pages": 1
+      }
+    ]
+  }
+]

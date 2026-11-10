@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0009",
+  "tier": "scanned",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0009",
+    "policy_number": "BGI-CP-2914734",
+    "insured_name": "Westbrook Wholesale Limited",
+    "risk_address": "Unit 9, Northgate Enterprise Park, Newcastle, NE11 6ZS",
+    "occupancy_type": "Retail premises",
+    "date_of_loss": "2026-06-11",
+    "date_reported": "2026-06-17",
+    "cause_of_loss": "Storm damage",
+    "loss_description": "High winds lifted roof sheeting above the workshop floor and rain entered the building. The damage was discovered at 06:45.",
+    "building_damage_estimate": 39500,
+    "contents_damage_estimate": 77000,
+    "business_interruption": false,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Owen Kim",
+    "reporter_phone": "07700 900821"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0009/CLM-2026-0009_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0009/CLM-2026-0009_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0009/CLM-2026-0009_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

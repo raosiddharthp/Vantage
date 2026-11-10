@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0011",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0011",
+    "policy_number": "BGI-CP-3601536",
+    "insured_name": "Hexham Storage Ltd",
+    "risk_address": "Unit 7, Canal Street Works, Derby, DE12 7XE",
+    "occupancy_type": "Warehouse and storage",
+    "date_of_loss": "2026-03-22",
+    "date_reported": "2026-03-26",
+    "cause_of_loss": "Storm damage",
+    "loss_description": "High winds lifted roof sheeting above the rear storage bay and rain entered the building. The damage was discovered at 20:30.",
+    "building_damage_estimate": 246500,
+    "contents_damage_estimate": 0,
+    "business_interruption": true,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Helen Chandra",
+    "reporter_phone": "07700 900701"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0011/CLM-2026-0011_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0011/CLM-2026-0011_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0011/CLM-2026-0011_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

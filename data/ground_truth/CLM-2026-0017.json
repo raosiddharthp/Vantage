@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0017",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0017",
+    "policy_number": "BGI-CP-7244213",
+    "insured_name": "Ironbridge Engineering Ltd",
+    "risk_address": "Unit 29, Station Yard, Cardiff, CF2 2DW",
+    "occupancy_type": "Food production",
+    "date_of_loss": "2026-09-20",
+    "date_reported": "2026-09-20",
+    "cause_of_loss": "Impact by vehicle",
+    "loss_description": "A vehicle reversed into the rear storage bay wall at approximately 00:00, damaging the wall, door frame and internal racking. The driver, employed by Tallis Mechanical Ltd, left contact details.",
+    "building_damage_estimate": 17250,
+    "contents_damage_estimate": 9750,
+    "business_interruption": true,
+    "third_party_involved": true,
+    "third_party_name": "Tallis Mechanical Ltd",
+    "reporter_name": "Dana Adeyemi",
+    "reporter_phone": "07700 900709"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0017/CLM-2026-0017_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0017/CLM-2026-0017_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0017/CLM-2026-0017_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

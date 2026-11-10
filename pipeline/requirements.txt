@@ -1,0 +1,5 @@
+google-cloud-documentai>=3.0,<4
+google-cloud-storage>=2.18,<4
+google-genai>=1.0,<2
+google-cloud-firestore>=2.16,<3
+pymupdf>=1.24,<2

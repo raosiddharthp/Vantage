@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0002",
+  "tier": "scanned",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0002",
+    "policy_number": "BGI-CP-2065064",
+    "insured_name": "Hexham Plastics Limited",
+    "risk_address": "Unit 40, Millbrook Way, Bradford, BD4 9SX",
+    "occupancy_type": "Warehouse and storage",
+    "date_of_loss": "2026-07-21",
+    "date_reported": "2026-07-21",
+    "cause_of_loss": "Escape of water",
+    "loss_description": "A supply pipe failed in the plant room and the leak was discovered at 03:45. Water affected flooring, plasterboard and stock stored at low level. The water is believed to have come from premises occupied by Brightside Electrical Services.",
+    "building_damage_estimate": 144500,
+    "contents_damage_estimate": 89000,
+    "business_interruption": false,
+    "third_party_involved": true,
+    "third_party_name": "Brightside Electrical Services",
+    "reporter_name": "Declan Whitcombe",
+    "reporter_phone": "07700 900561"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0002/CLM-2026-0002_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0002/CLM-2026-0002_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0002/CLM-2026-0002_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

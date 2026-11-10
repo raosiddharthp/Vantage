@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0001",
+  "tier": "clean",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0001",
+    "policy_number": "BGI-CP-3249648",
+    "insured_name": "Thornbury Electrical Supplies Limited",
+    "risk_address": "Unit 36, Riverside Trading Park, Wakefield, WF2 6LE",
+    "occupancy_type": "Retail premises",
+    "date_of_loss": "2026-08-29",
+    "date_reported": "2026-09-02",
+    "cause_of_loss": "Fire",
+    "loss_description": "A fire started in the workshop floor at approximately 10:45. It was contained by the fire service, leaving heat, smoke and water damage to stock, fixtures and the roof structure.",
+    "building_damage_estimate": 235000,
+    "contents_damage_estimate": 82250,
+    "business_interruption": true,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Rahul Kim",
+    "reporter_phone": "07700 900449"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0001/CLM-2026-0001_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0001/CLM-2026-0001_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0001/CLM-2026-0001_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}

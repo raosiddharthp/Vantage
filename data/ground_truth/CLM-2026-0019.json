@@ -1,0 +1,64 @@
+{
+  "claim_id": "CLM-2026-0019",
+  "tier": "scanned",
+  "problem_type": null,
+  "fields": {
+    "claim_ref": "CLM-2026-0019",
+    "policy_number": "BGI-CP-6621950",
+    "insured_name": "Kingsley Engineering Limited",
+    "risk_address": "Unit 39, Meadow Lane Business Park, Sheffield, S11 5UD",
+    "occupancy_type": "Retail premises",
+    "date_of_loss": "2026-03-14",
+    "date_reported": "2026-03-14",
+    "cause_of_loss": "Theft / burglary",
+    "loss_description": "Forced entry was made through the retail floor shutter overnight. Stock and equipment were taken and the shutter and alarm panel were damaged. Discovered at 13:15; the police have been informed.",
+    "building_damage_estimate": 237000,
+    "contents_damage_estimate": 40250,
+    "business_interruption": false,
+    "third_party_involved": false,
+    "third_party_name": null,
+    "reporter_name": "Fiona Barrow",
+    "reporter_phone": "07700 900845"
+  },
+  "expected_flags": {
+    "missing": [],
+    "conflicting": []
+  },
+  "scored_fields": [
+    "claim_ref",
+    "policy_number",
+    "insured_name",
+    "risk_address",
+    "occupancy_type",
+    "date_of_loss",
+    "date_reported",
+    "cause_of_loss",
+    "building_damage_estimate",
+    "contents_damage_estimate",
+    "business_interruption",
+    "third_party_involved",
+    "third_party_name",
+    "reporter_name",
+    "reporter_phone"
+  ],
+  "unscored_fields": [
+    "loss_description"
+  ],
+  "documents": [
+    {
+      "type": "fnol_form",
+      "file": "CLM-2026-0019/CLM-2026-0019_fnol_form.pdf",
+      "pages": 1
+    },
+    {
+      "type": "loss_report",
+      "file": "CLM-2026-0019/CLM-2026-0019_loss_report.pdf",
+      "pages": 1
+    },
+    {
+      "type": "repair_estimate",
+      "file": "CLM-2026-0019/CLM-2026-0019_repair_estimate.pdf",
+      "pages": 1
+    }
+  ]
+}
