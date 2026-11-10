@@ -63,7 +63,11 @@ def resolve(readings, line_text):
                           "status": "missing", "conflicts": [],
                           "stated_missing": stated_missing}
             continue
-        best = rs[0]
+        authority = rs[0]
+        # Authority decides the value. Among readings that agree with it, cite one
+        # whose lines really contain the value, so the evidence link is useful.
+        best = next((r for r in rs
+                     if r["canon"] == authority["canon"] and r["grounded"]), authority)
         conflicts = [{"doc": r["doc"], "value": r["value"], "line_ids": r["line_ids"]}
                      for r in rs[1:] if r["canon"] != best["canon"]]
         if field in NARRATIVE_FIELDS:
